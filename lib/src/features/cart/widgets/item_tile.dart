@@ -1,20 +1,13 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:e_commerce/routes/router.gr.dart';
 import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/cart/models/item.dart';
 import 'package:flutter/material.dart';
-import 'package:e_commerce/src/features/product_listing/models/product.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:get/get.dart';
 
-class ProductTile extends StatelessWidget {
-  const ProductTile({
-    Key? key,
-    required this.product,
-    required this.moreDetail,
-  }) : super(key: key);
+class ItemTile extends StatelessWidget {
+  const ItemTile({Key? key, required this.item}) : super(key: key);
 
-  final Product product;
-  final void Function() moreDetail;
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +24,13 @@ class ProductTile extends StatelessWidget {
                 child: Card(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: GestureDetector(
-                      onTap: moreDetail,
-                      child: Image.network(
-                        product.imageLink.toString(),
-                        fit: BoxFit.fitWidth,
-                        errorBuilder: (context, exception, stackTrace) =>
-                            Image.asset(
-                          'image/error_image.png',
-                          fit: BoxFit.fitHeight,
-                        ),
+                    child: Image.network(
+                      item.imageLink.toString(),
+                      fit: BoxFit.fitWidth,
+                      errorBuilder: (context, exception, stackTrace) =>
+                          Image.asset(
+                        'image/error_image.png',
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),
@@ -56,7 +46,7 @@ class ProductTile extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: AutoSizeText(
-                        product.name.toString(),
+                        item.name.toString(),
                         textAlign: TextAlign.left,
                         style: Theme.of(context).textTheme.subtitle2,
                         minFontSize: 18,
@@ -70,16 +60,14 @@ class ProductTile extends StatelessWidget {
                       child: Row(
                         children: [
                           AutoSizeText(
-                            product.price.toString(),
+                            item.price.toString(),
                             textAlign: TextAlign.left,
                             style: Theme.of(context).textTheme.subtitle2,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           AutoSizeText(
-                            product.priceSign == Null
-                                ? product.priceSign.toString()
-                                : "\$",
+                            "\$",
                             textAlign: TextAlign.left,
                             style: Theme.of(context).textTheme.bodyText1,
                             maxLines: 1,
@@ -91,24 +79,15 @@ class ProductTile extends StatelessWidget {
                     const SizedBox(height: 14),
                     Row(
                       children: [
-                        SizedBox(
-                          width: 177,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: () =>
-                                addToCart(itemFromProduct(product)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.shopping_cart_outlined,
-                                ),
-                                SizedBox(width: 17.43),
-                                AutoSizeText("ADD TO CART")
-                              ],
-                            ),
-                          ),
-                        )
+                        IconButton(
+                          onPressed: () => removeFromCart(item),
+                          icon: const Icon(Icons.remove),
+                        ),
+                        Obx(() => Text(item.quantity.value.toString())),
+                        IconButton(
+                          onPressed: () => addToCart(item),
+                          icon: const Icon(Icons.add),
+                        ),
                       ],
                     )
                   ],

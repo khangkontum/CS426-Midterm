@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:e_commerce/routes/router.gr.dart';
 import 'package:e_commerce/src/features/product_listing/controllers/product_controller.dart';
 import 'package:e_commerce/src/features/product_listing/widgets/product_tile.dart';
@@ -15,12 +13,16 @@ class ProductListing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'All Products',
-            style: Theme.of(context).textTheme.headline1,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(50),
+          child: AppBar(
+            elevation: 0,
+            centerTitle: false,
+            backgroundColor: Colors.transparent,
+            title: Text(
+              'All Products',
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ),
         ),
         body: Obx(() {
@@ -31,7 +33,11 @@ class ProductListing extends StatelessWidget {
                 itemCount: productController.productList.value.length,
                 itemBuilder: (_, index) => ProductTile(
                     product: productController.productList.value[index],
-                    addToCart: () => print('tmp')));
+                    moreDetail: () => context.router.push(
+                          ProductDetail(
+                            product: productController.productList.value[index],
+                          ),
+                        )));
           }
         }));
   }

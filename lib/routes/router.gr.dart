@@ -30,8 +30,10 @@ class myAppRouter extends _i2.RootStackRouter {
   @override
   final Map<String, _i2.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.HomePage());
+          routeData: routeData, child: _i1.HomePage(key: args.key));
     },
     ProductRoute.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
@@ -56,14 +58,17 @@ class myAppRouter extends _i2.RootStackRouter {
           routeData: routeData, child: _i3.ProductListing(key: args.key));
     },
     ProductDetail.name: (routeData) {
-      final args = routeData.argsAs<ProductDetailArgs>();
+      final args = routeData.argsAs<ProductDetailArgs>(
+          orElse: () => const ProductDetailArgs());
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i4.ProductDetail(key: args.key, product: args.product));
     },
     CartScreen.name: (routeData) {
+      final args = routeData.argsAs<CartScreenArgs>(
+          orElse: () => const CartScreenArgs());
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.CartScreen());
+          routeData: routeData, child: _i5.CartScreen(key: args.key));
     },
     VendorScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
@@ -114,11 +119,25 @@ class myAppRouter extends _i2.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i2.PageRouteInfo<void> {
-  const HomeRoute({List<_i2.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+class HomeRoute extends _i2.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i8.Key? key, List<_i2.PageRouteInfo>? children})
+      : super(HomeRoute.name,
+            path: '/',
+            args: HomeRouteArgs(key: key),
+            initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -181,7 +200,7 @@ class ProductListingArgs {
 /// generated route for
 /// [_i4.ProductDetail]
 class ProductDetail extends _i2.PageRouteInfo<ProductDetailArgs> {
-  ProductDetail({_i8.Key? key, required _i9.Product product})
+  ProductDetail({_i8.Key? key, _i9.Product? product})
       : super(ProductDetail.name,
             path: 'productDetail',
             args: ProductDetailArgs(key: key, product: product));
@@ -190,11 +209,11 @@ class ProductDetail extends _i2.PageRouteInfo<ProductDetailArgs> {
 }
 
 class ProductDetailArgs {
-  const ProductDetailArgs({this.key, required this.product});
+  const ProductDetailArgs({this.key, this.product});
 
   final _i8.Key? key;
 
-  final _i9.Product product;
+  final _i9.Product? product;
 
   @override
   String toString() {
@@ -204,10 +223,22 @@ class ProductDetailArgs {
 
 /// generated route for
 /// [_i5.CartScreen]
-class CartScreen extends _i2.PageRouteInfo<void> {
-  const CartScreen() : super(CartScreen.name, path: '');
+class CartScreen extends _i2.PageRouteInfo<CartScreenArgs> {
+  CartScreen({_i8.Key? key})
+      : super(CartScreen.name, path: '', args: CartScreenArgs(key: key));
 
   static const String name = 'CartScreen';
+}
+
+class CartScreenArgs {
+  const CartScreenArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'CartScreenArgs{key: $key}';
+  }
 }
 
 /// generated route for
