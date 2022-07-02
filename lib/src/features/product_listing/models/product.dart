@@ -38,8 +38,8 @@ class Product {
   String? brand;
   String? name;
   String? price;
-  dynamic? priceSign;
-  dynamic? currency;
+  dynamic priceSign;
+  dynamic currency;
   String? imageLink;
   String? productLink;
   String? websiteLink;
@@ -67,7 +67,7 @@ class Product {
         productLink: json["product_link"],
         websiteLink: json["website_link"],
         description: json["description"],
-        rating: json["rating"] == null ? null : json["rating"].toDouble(),
+        // rating: json["rating"] == null ? null : json["rating"].toDouble(),
         // category: json["category"] == null ? null : json["category"],
         // productType: json["product_type"],
         // tagList: List<dynamic>.from(json["tag_list"].map((x) => x)),

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce/src/features/cart/presentation/cart_screen.dart';
 import 'package:e_commerce/src/features/home/presentation/home_screen.dart';
+import 'package:e_commerce/src/features/product_listing/presentation/product_detail_screen.dart';
 import 'package:e_commerce/src/features/profile/presentation/profile_screen.dart';
 import 'package:e_commerce/src/features/vendors/presentation/vendor_screen.dart';
 import 'package:e_commerce/src/features/product_listing/presentation/product_listing_screen.dart';
@@ -22,6 +23,10 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
                 path: '',
                 page: ProductListing,
               ),
+              AutoRoute(
+                path: 'productDetail',
+                page: ProductDetail,
+              )
             ]),
         AutoRoute(
             path: 'cart',

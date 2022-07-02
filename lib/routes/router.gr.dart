@@ -11,17 +11,20 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i2;
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 
-import '../src/features/cart/presentation/cart_screen.dart' as _i4;
+import '../src/features/cart/presentation/cart_screen.dart' as _i5;
 import '../src/features/home/presentation/home_screen.dart' as _i1;
+import '../src/features/product_listing/models/product.dart' as _i9;
+import '../src/features/product_listing/presentation/product_detail_screen.dart'
+    as _i4;
 import '../src/features/product_listing/presentation/product_listing_screen.dart'
     as _i3;
-import '../src/features/profile/presentation/profile_screen.dart' as _i6;
-import '../src/features/vendors/presentation/vendor_screen.dart' as _i5;
+import '../src/features/profile/presentation/profile_screen.dart' as _i7;
+import '../src/features/vendors/presentation/vendor_screen.dart' as _i6;
 
 class myAppRouter extends _i2.RootStackRouter {
-  myAppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
+  myAppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -52,17 +55,23 @@ class myAppRouter extends _i2.RootStackRouter {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData, child: _i3.ProductListing(key: args.key));
     },
+    ProductDetail.name: (routeData) {
+      final args = routeData.argsAs<ProductDetailArgs>();
+      return _i2.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i4.ProductDetail(key: args.key, product: args.product));
+    },
     CartScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.CartScreen());
+          routeData: routeData, child: const _i5.CartScreen());
     },
     VendorScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.VendorScreen());
+          routeData: routeData, child: const _i6.VendorScreen());
     },
     ProfileScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.ProfileScreen());
+          routeData: routeData, child: const _i7.ProfileScreen());
     }
   };
 
@@ -74,7 +83,9 @@ class myAppRouter extends _i2.RootStackRouter {
               parent: HomeRoute.name,
               children: [
                 _i2.RouteConfig(ProductListing.name,
-                    path: '', parent: ProductRoute.name)
+                    path: '', parent: ProductRoute.name),
+                _i2.RouteConfig(ProductDetail.name,
+                    path: 'productDetail', parent: ProductRoute.name)
               ]),
           _i2.RouteConfig(CartRoute.name,
               path: 'cart',
@@ -149,7 +160,7 @@ class ProfileRoute extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.ProductListing]
 class ProductListing extends _i2.PageRouteInfo<ProductListingArgs> {
-  ProductListing({_i7.Key? key})
+  ProductListing({_i8.Key? key})
       : super(ProductListing.name,
             path: '', args: ProductListingArgs(key: key));
 
@@ -159,7 +170,7 @@ class ProductListing extends _i2.PageRouteInfo<ProductListingArgs> {
 class ProductListingArgs {
   const ProductListingArgs({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -168,7 +179,31 @@ class ProductListingArgs {
 }
 
 /// generated route for
-/// [_i4.CartScreen]
+/// [_i4.ProductDetail]
+class ProductDetail extends _i2.PageRouteInfo<ProductDetailArgs> {
+  ProductDetail({_i8.Key? key, required _i9.Product product})
+      : super(ProductDetail.name,
+            path: 'productDetail',
+            args: ProductDetailArgs(key: key, product: product));
+
+  static const String name = 'ProductDetail';
+}
+
+class ProductDetailArgs {
+  const ProductDetailArgs({this.key, required this.product});
+
+  final _i8.Key? key;
+
+  final _i9.Product product;
+
+  @override
+  String toString() {
+    return 'ProductDetailArgs{key: $key, product: $product}';
+  }
+}
+
+/// generated route for
+/// [_i5.CartScreen]
 class CartScreen extends _i2.PageRouteInfo<void> {
   const CartScreen() : super(CartScreen.name, path: '');
 
@@ -176,7 +211,7 @@ class CartScreen extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.VendorScreen]
+/// [_i6.VendorScreen]
 class VendorScreen extends _i2.PageRouteInfo<void> {
   const VendorScreen() : super(VendorScreen.name, path: '');
 
@@ -184,7 +219,7 @@ class VendorScreen extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.ProfileScreen]
+/// [_i7.ProfileScreen]
 class ProfileScreen extends _i2.PageRouteInfo<void> {
   const ProfileScreen() : super(ProfileScreen.name, path: '');
 

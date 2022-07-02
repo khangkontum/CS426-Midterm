@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 // import 'package:e_commerce/routes/'
 import 'package:e_commerce/routes/router.gr.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:theme_provider/theme_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: Text('Discover'),
+        title: const Text('Discover'),
         backgroundColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
