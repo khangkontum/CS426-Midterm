@@ -17,7 +17,9 @@ class ProductController extends GetxController {
     try {
       isLoading.value = true;
       var products = await RemoteService.fetchProducts();
-      if (products != null) productList.value = RxList.from(products);
+      if (products != null) {
+        productList.value = RxList.from(products.reversed.toList());
+      }
     } finally {
       isLoading.value = false;
     }
