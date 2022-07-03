@@ -61,7 +61,7 @@ class CartScreen extends StatelessWidget {
                           width: 160,
                           height: 52,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () => confirmCart(),
                               child: const AutoSizeText("CONFIRM CART")),
                         ),
                         const SizedBox(width: 34),

@@ -20,6 +20,7 @@ ThemeData appTheme(BuildContext context) {
         ),
         subtitle1: GoogleFonts.aBeeZee(
           color: const Color(0xFF2D0C57),
+          fontWeight: FontWeight.bold,
           fontSize: 18,
         ),
         subtitle2: GoogleFonts.aBeeZee(

@@ -71,8 +71,10 @@ class myAppRouter extends _i2.RootStackRouter {
           routeData: routeData, child: _i5.CartScreen(key: args.key));
     },
     VendorScreen.name: (routeData) {
+      final args = routeData.argsAs<VendorScreenArgs>(
+          orElse: () => const VendorScreenArgs());
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.VendorScreen());
+          routeData: routeData, child: _i6.VendorScreen(key: args.key));
     },
     ProfileScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
@@ -243,10 +245,22 @@ class CartScreenArgs {
 
 /// generated route for
 /// [_i6.VendorScreen]
-class VendorScreen extends _i2.PageRouteInfo<void> {
-  const VendorScreen() : super(VendorScreen.name, path: '');
+class VendorScreen extends _i2.PageRouteInfo<VendorScreenArgs> {
+  VendorScreen({_i8.Key? key})
+      : super(VendorScreen.name, path: '', args: VendorScreenArgs(key: key));
 
   static const String name = 'VendorScreen';
+}
+
+class VendorScreenArgs {
+  const VendorScreenArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'VendorScreenArgs{key: $key}';
+  }
 }
 
 /// generated route for

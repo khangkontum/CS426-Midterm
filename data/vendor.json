@@ -1,0 +1,52 @@
+[
+    {
+        "name": "CHANEL",
+        "imageLink": "chanel.png",
+        "address": "290 Hall Place"
+    },
+    {
+        "name": "Estee Lauder",
+        "imageLink": "estee.png",
+        "address": "553 McKinley Avenue"
+    },
+    {
+        "name": "Dior",
+        "imageLink": "dior.png",
+        "address": "1889 Spruce Drive"
+    },
+    {
+        "name": "L'Oreal",
+        "imageLink": "loreal.png",
+        "address": "3108 Centennial Farm Road"
+    },
+    {
+        "name": "Lancome",
+        "imageLink": "lancome.jpg",
+        "address": "2195 Frederick Street"
+    },
+    {
+        "name": "Clarins",
+        "imageLink": "clarins.png",
+        "address": "1771 White Pine Lane"
+    },
+    {
+        "name": "Maybelline New York",
+        "imageLink": "mbl.jpg",
+        "address": "4992 Beech Street"
+    },
+    {
+        "name": "Guerlain",
+        "imageLink": "guerlain.jpg",
+        "address": "2598 Scott Street"
+    },
+    {
+        "name": "MAC",
+        "imageLink": "mac.jpg",
+        "address": "3719 Lilac Lane"
+    },
+    {
+        "name": "NARS",
+        "imageLink": "nars.jpg",
+        "address": "1673 Bolman Court"
+    }
+]

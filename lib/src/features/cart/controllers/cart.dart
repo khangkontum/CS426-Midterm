@@ -5,6 +5,13 @@ import 'package:flutter/src/foundation/key.dart';
 import '../models/item.dart';
 import 'package:get/get.dart';
 
+void confirmCart() {
+  final Cart cart = Get.find();
+  cart.itemList.value.clear();
+  cart.totalItem.value = 0;
+  cart.totalValue.value = 0;
+}
+
 void addToCart(Item item) {
   final Cart cart = Get.find();
   cart.totalItem.value += 1;
