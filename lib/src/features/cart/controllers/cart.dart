@@ -1,7 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-
-import 'package:flutter/src/foundation/key.dart';
-
 import '../models/item.dart';
 import 'package:get/get.dart';
 
@@ -42,6 +38,7 @@ void removeFromCart(Item item) {
     if (cart.itemList.value[it].id == item.id) {
       cart.itemList.value[it].quantity--;
       cart.totalItem.value--;
+      cart.totalValue.value -= double.parse(item.price.toString());
       if (cart.itemList.value[it].quantity == 0)
         cart.itemList.value.remove(item);
       return;

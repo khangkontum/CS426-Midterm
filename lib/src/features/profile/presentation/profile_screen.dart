@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerce/src/shared/app_logo.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-        Picture(),
+        AppLogo(),
         SizedBox(height: 20),
         Field(
             fieldIcon: Icon(Icons.person_outline_sharp),
@@ -52,29 +53,6 @@ class Field extends StatelessWidget {
               )
             ],
           )),
-    );
-  }
-}
-
-class Picture extends StatelessWidget {
-  const Picture({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      width: 150,
-      child: Stack(
-        fit: StackFit.expand,
-        children: const [
-          CircleAvatar(
-            backgroundImage: AssetImage("image/khh_logo.png"),
-            backgroundColor: Colors.transparent,
-          )
-        ],
-      ),
     );
   }
 }

@@ -10,109 +10,125 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i2;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i10;
 
-import '../src/features/cart/presentation/cart_screen.dart' as _i5;
-import '../src/features/home/presentation/home_screen.dart' as _i1;
-import '../src/features/product_listing/models/product.dart' as _i9;
+import '../src/features/cart/presentation/cart_screen.dart' as _i7;
+import '../src/features/home/presentation/home_screen.dart' as _i3;
+import '../src/features/product_listing/models/product.dart' as _i11;
 import '../src/features/product_listing/presentation/product_detail_screen.dart'
-    as _i4;
+    as _i6;
 import '../src/features/product_listing/presentation/product_listing_screen.dart'
-    as _i3;
-import '../src/features/profile/presentation/profile_screen.dart' as _i7;
-import '../src/features/vendors/presentation/vendor_screen.dart' as _i6;
+    as _i5;
+import '../src/features/profile/presentation/profile_screen.dart' as _i9;
+import '../src/features/root/features/signup/signup_screen.dart' as _i2;
+import '../src/features/root/presentatition/root_screen.dart' as _i1;
+import '../src/features/vendors/presentation/vendor_screen.dart' as _i8;
 
-class myAppRouter extends _i2.RootStackRouter {
-  myAppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
+class myAppRouter extends _i4.RootStackRouter {
+  myAppRouter([_i10.GlobalKey<_i10.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i2.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
+    RootScreen.name: (routeData) {
+      final args = routeData.argsAs<RootScreenArgs>(
+          orElse: () => const RootScreenArgs());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i1.RootScreen(key: args.key));
+    },
+    SignupScreen.name: (routeData) {
+      final args = routeData.argsAs<SignupScreenArgs>(
+          orElse: () => const SignupScreenArgs());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i2.SignupScreen(key: args.key));
+    },
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i1.HomePage(key: args.key));
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.HomePage(key: args.key));
     },
     ProductRoute.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.EmptyRouterPage());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     CartRoute.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.EmptyRouterPage());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     VendorRoute.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.EmptyRouterPage());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     ProfileRoute.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.EmptyRouterPage());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     ProductListing.name: (routeData) {
       final args = routeData.argsAs<ProductListingArgs>(
           orElse: () => const ProductListingArgs());
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i3.ProductListing(key: args.key));
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i5.ProductListing(key: args.key));
     },
     ProductDetail.name: (routeData) {
       final args = routeData.argsAs<ProductDetailArgs>(
           orElse: () => const ProductDetailArgs());
-      return _i2.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i4.ProductDetail(key: args.key, product: args.product));
+          child: _i6.ProductDetail(key: args.key, product: args.product));
     },
     CartScreen.name: (routeData) {
       final args = routeData.argsAs<CartScreenArgs>(
           orElse: () => const CartScreenArgs());
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i5.CartScreen(key: args.key));
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i7.CartScreen(key: args.key));
     },
     VendorScreen.name: (routeData) {
       final args = routeData.argsAs<VendorScreenArgs>(
           orElse: () => const VendorScreenArgs());
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i6.VendorScreen(key: args.key));
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i8.VendorScreen(key: args.key));
     },
     ProfileScreen.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.ProfileScreen());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i9.ProfileScreen());
     }
   };
 
   @override
-  List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(HomeRoute.name, path: '/', children: [
-          _i2.RouteConfig(ProductRoute.name,
+  List<_i4.RouteConfig> get routes => [
+        _i4.RouteConfig(RootScreen.name, path: '/'),
+        _i4.RouteConfig(SignupScreen.name, path: '/signup'),
+        _i4.RouteConfig(HomeRoute.name, path: '/home', children: [
+          _i4.RouteConfig(ProductRoute.name,
               path: 'products',
               parent: HomeRoute.name,
               children: [
-                _i2.RouteConfig(ProductListing.name,
+                _i4.RouteConfig(ProductListing.name,
                     path: '', parent: ProductRoute.name),
-                _i2.RouteConfig(ProductDetail.name,
+                _i4.RouteConfig(ProductDetail.name,
                     path: 'productDetail', parent: ProductRoute.name)
               ]),
-          _i2.RouteConfig(CartRoute.name,
+          _i4.RouteConfig(CartRoute.name,
               path: 'cart',
               parent: HomeRoute.name,
               children: [
-                _i2.RouteConfig(CartScreen.name,
+                _i4.RouteConfig(CartScreen.name,
                     path: '', parent: CartRoute.name)
               ]),
-          _i2.RouteConfig(VendorRoute.name,
+          _i4.RouteConfig(VendorRoute.name,
               path: 'vendors',
               parent: HomeRoute.name,
               children: [
-                _i2.RouteConfig(VendorScreen.name,
+                _i4.RouteConfig(VendorScreen.name,
                     path: '', parent: VendorRoute.name)
               ]),
-          _i2.RouteConfig(ProfileRoute.name,
+          _i4.RouteConfig(ProfileRoute.name,
               path: 'profile',
               parent: HomeRoute.name,
               children: [
-                _i2.RouteConfig(ProfileScreen.name,
+                _i4.RouteConfig(ProfileScreen.name,
                     path: '', parent: ProfileRoute.name)
               ])
         ])
@@ -120,11 +136,52 @@ class myAppRouter extends _i2.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i2.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i8.Key? key, List<_i2.PageRouteInfo>? children})
+/// [_i1.RootScreen]
+class RootScreen extends _i4.PageRouteInfo<RootScreenArgs> {
+  RootScreen({_i10.Key? key})
+      : super(RootScreen.name, path: '/', args: RootScreenArgs(key: key));
+
+  static const String name = 'RootScreen';
+}
+
+class RootScreenArgs {
+  const RootScreenArgs({this.key});
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'RootScreenArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i2.SignupScreen]
+class SignupScreen extends _i4.PageRouteInfo<SignupScreenArgs> {
+  SignupScreen({_i10.Key? key})
+      : super(SignupScreen.name,
+            path: '/signup', args: SignupScreenArgs(key: key));
+
+  static const String name = 'SignupScreen';
+}
+
+class SignupScreenArgs {
+  const SignupScreenArgs({this.key});
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'SignupScreenArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.HomePage]
+class HomeRoute extends _i4.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i10.Key? key, List<_i4.PageRouteInfo>? children})
       : super(HomeRoute.name,
-            path: '/',
+            path: '/home',
             args: HomeRouteArgs(key: key),
             initialChildren: children);
 
@@ -134,7 +191,7 @@ class HomeRoute extends _i2.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -143,45 +200,45 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class ProductRoute extends _i2.PageRouteInfo<void> {
-  const ProductRoute({List<_i2.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class ProductRoute extends _i4.PageRouteInfo<void> {
+  const ProductRoute({List<_i4.PageRouteInfo>? children})
       : super(ProductRoute.name, path: 'products', initialChildren: children);
 
   static const String name = 'ProductRoute';
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class CartRoute extends _i2.PageRouteInfo<void> {
-  const CartRoute({List<_i2.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class CartRoute extends _i4.PageRouteInfo<void> {
+  const CartRoute({List<_i4.PageRouteInfo>? children})
       : super(CartRoute.name, path: 'cart', initialChildren: children);
 
   static const String name = 'CartRoute';
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class VendorRoute extends _i2.PageRouteInfo<void> {
-  const VendorRoute({List<_i2.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class VendorRoute extends _i4.PageRouteInfo<void> {
+  const VendorRoute({List<_i4.PageRouteInfo>? children})
       : super(VendorRoute.name, path: 'vendors', initialChildren: children);
 
   static const String name = 'VendorRoute';
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class ProfileRoute extends _i2.PageRouteInfo<void> {
-  const ProfileRoute({List<_i2.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class ProfileRoute extends _i4.PageRouteInfo<void> {
+  const ProfileRoute({List<_i4.PageRouteInfo>? children})
       : super(ProfileRoute.name, path: 'profile', initialChildren: children);
 
   static const String name = 'ProfileRoute';
 }
 
 /// generated route for
-/// [_i3.ProductListing]
-class ProductListing extends _i2.PageRouteInfo<ProductListingArgs> {
-  ProductListing({_i8.Key? key})
+/// [_i5.ProductListing]
+class ProductListing extends _i4.PageRouteInfo<ProductListingArgs> {
+  ProductListing({_i10.Key? key})
       : super(ProductListing.name,
             path: '', args: ProductListingArgs(key: key));
 
@@ -191,7 +248,7 @@ class ProductListing extends _i2.PageRouteInfo<ProductListingArgs> {
 class ProductListingArgs {
   const ProductListingArgs({this.key});
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -200,9 +257,9 @@ class ProductListingArgs {
 }
 
 /// generated route for
-/// [_i4.ProductDetail]
-class ProductDetail extends _i2.PageRouteInfo<ProductDetailArgs> {
-  ProductDetail({_i8.Key? key, _i9.Product? product})
+/// [_i6.ProductDetail]
+class ProductDetail extends _i4.PageRouteInfo<ProductDetailArgs> {
+  ProductDetail({_i10.Key? key, _i11.Product? product})
       : super(ProductDetail.name,
             path: 'productDetail',
             args: ProductDetailArgs(key: key, product: product));
@@ -213,9 +270,9 @@ class ProductDetail extends _i2.PageRouteInfo<ProductDetailArgs> {
 class ProductDetailArgs {
   const ProductDetailArgs({this.key, this.product});
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
-  final _i9.Product? product;
+  final _i11.Product? product;
 
   @override
   String toString() {
@@ -224,9 +281,9 @@ class ProductDetailArgs {
 }
 
 /// generated route for
-/// [_i5.CartScreen]
-class CartScreen extends _i2.PageRouteInfo<CartScreenArgs> {
-  CartScreen({_i8.Key? key})
+/// [_i7.CartScreen]
+class CartScreen extends _i4.PageRouteInfo<CartScreenArgs> {
+  CartScreen({_i10.Key? key})
       : super(CartScreen.name, path: '', args: CartScreenArgs(key: key));
 
   static const String name = 'CartScreen';
@@ -235,7 +292,7 @@ class CartScreen extends _i2.PageRouteInfo<CartScreenArgs> {
 class CartScreenArgs {
   const CartScreenArgs({this.key});
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -244,9 +301,9 @@ class CartScreenArgs {
 }
 
 /// generated route for
-/// [_i6.VendorScreen]
-class VendorScreen extends _i2.PageRouteInfo<VendorScreenArgs> {
-  VendorScreen({_i8.Key? key})
+/// [_i8.VendorScreen]
+class VendorScreen extends _i4.PageRouteInfo<VendorScreenArgs> {
+  VendorScreen({_i10.Key? key})
       : super(VendorScreen.name, path: '', args: VendorScreenArgs(key: key));
 
   static const String name = 'VendorScreen';
@@ -255,7 +312,7 @@ class VendorScreen extends _i2.PageRouteInfo<VendorScreenArgs> {
 class VendorScreenArgs {
   const VendorScreenArgs({this.key});
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -264,8 +321,8 @@ class VendorScreenArgs {
 }
 
 /// generated route for
-/// [_i7.ProfileScreen]
-class ProfileScreen extends _i2.PageRouteInfo<void> {
+/// [_i9.ProfileScreen]
+class ProfileScreen extends _i4.PageRouteInfo<void> {
   const ProfileScreen() : super(ProfileScreen.name, path: '');
 
   static const String name = 'ProfileScreen';

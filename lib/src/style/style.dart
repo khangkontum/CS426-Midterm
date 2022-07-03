@@ -3,7 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme(BuildContext context) {
   return ThemeData(
+      cardTheme: CardTheme(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
       backgroundColor: const Color(0xFFFF97B7),
+      inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)))),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(

@@ -3,6 +3,8 @@ import 'package:e_commerce/src/features/cart/presentation/cart_screen.dart';
 import 'package:e_commerce/src/features/home/presentation/home_screen.dart';
 import 'package:e_commerce/src/features/product_listing/presentation/product_detail_screen.dart';
 import 'package:e_commerce/src/features/profile/presentation/profile_screen.dart';
+import 'package:e_commerce/src/features/root/features/signup/signup_screen.dart';
+import 'package:e_commerce/src/features/root/presentatition/root_screen.dart';
 import 'package:e_commerce/src/features/vendors/presentation/vendor_screen.dart';
 import 'package:e_commerce/src/features/product_listing/presentation/product_listing_screen.dart';
 
@@ -11,8 +13,16 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
   routes: [
     AutoRoute(
       path: '/',
-      page: HomePage,
+      page: RootScreen,
       initial: true,
+    ),
+    AutoRoute(
+      path: '/signup',
+      page: SignupScreen,
+    ),
+    AutoRoute(
+      path: '/home',
+      page: HomePage,
       children: [
         AutoRoute(
             path: 'products',
