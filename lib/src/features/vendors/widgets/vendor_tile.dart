@@ -45,7 +45,7 @@ class VendorTile extends StatelessWidget {
             FittedBox(
               fit: BoxFit.fitWidth,
               child: AutoSizeText(
-                vendor.address.toString(),
+                vendor.long.toString(),
                 style: Theme.of(context).textTheme.subtitle2,
               ),
             ),

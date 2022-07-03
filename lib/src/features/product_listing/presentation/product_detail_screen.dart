@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
           height: MediaQuery.of(context).size.height * .6,
           child: Image.network(
             product!.imageLink.toString(),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
             errorBuilder: (context, exception, stackTrace) => Image.asset(
               'image/error_image.png',
               fit: BoxFit.cover,

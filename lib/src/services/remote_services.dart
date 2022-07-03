@@ -1,7 +1,7 @@
-import 'dart:html';
-
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
+import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:e_commerce/src/features/user/models/user.dart';
+import 'package:e_commerce/src/features/vendors/models/vendor.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,14 +13,23 @@ class RemoteService {
   static var client = http.Client();
 
   static Future<List<Product>?> fetchProducts() async {
-    var response = await client
-        .get(Uri.parse('http://makeup-api.herokuapp.com/api/v1/products.json'));
-    if (response.statusCode == true) {
+    var url = dotenv.env["PREFIX"].toString() + '/products';
+    var response = await client.get(Uri.parse(url));
+    if (response.statusCode == 200) {
       var jsonData = response.body;
-      // print('before jsonData');
-      // print(jsonData);
-      // print('after json data');
+
       return productFromJson(jsonData);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<List<Vendor>?> fetchVendors() async {
+    var url = dotenv.env["PREFIX"].toString() + '/stores';
+    var response = await client.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var jsonData = response.body;
+      return vendorFromJson(jsonData);
     } else {
       return null;
     }
@@ -37,15 +46,16 @@ class RemoteService {
       body: jsonEncode(
           <String, String>{'username': username, 'password': password}),
     );
-    var jsonData = json.decode(response.body);
-    if (jsonData['success'] == true) {
-      return jsonData['token'];
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print(response.body);
+      return response.body;
     } else {
       return null;
     }
   }
 
-  static Future<User?> authUser(token) async {
+  static Future<JsonCodec?> authUser(token) async {
     var url = dotenv.env["PREFIX"].toString() + "/auth/info";
     var response = await client.get(
       Uri.parse(url),
@@ -56,7 +66,7 @@ class RemoteService {
     );
     var jsonData = json.decode(response.body);
     if (jsonData['success'] == true) {
-      return User.fromJson(jsonData);
+      return jsonData;
     } else {
       return null;
     }
@@ -71,11 +81,11 @@ class RemoteService {
         'Accept': 'application/json'
       },
       body: jsonEncode(<String, String>{
-        'username': user.username,
+        'username': user.username.toString(),
         'password': user.password.toString(),
-        'email': user.email,
-        'address': user.address,
-        'name': user.fullname
+        'email': user.email.toString(),
+        'phone': user.phone.toString(),
+        'name': user.fullname.toString()
       }),
     );
     var jsonData = json.decode(response.body);

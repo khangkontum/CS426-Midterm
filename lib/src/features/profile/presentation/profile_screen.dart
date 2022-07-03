@@ -1,25 +1,41 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/src/shared/app_logo.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce/routes/router.gr.dart';
+import 'package:get/instance_manager.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        AppLogo(),
-        SizedBox(height: 20),
+      children: [
+        const AppLogo(),
+        const SizedBox(height: 20),
         Field(
-            fieldIcon: Icon(Icons.person_outline_sharp),
-            fieldTittle: 'My Account'),
+            fieldIcon: const Icon(Icons.verified_user_outlined),
+            fieldTittle: userController.user.value.username.toString()),
         Field(
-            fieldIcon: Icon(Icons.phone_outlined), fieldTittle: 'Phone Number'),
-        Field(fieldIcon: Icon(Icons.home_outlined), fieldTittle: 'Address'),
-        Field(fieldIcon: Icon(Icons.flag_outlined), fieldTittle: 'Country'),
+            fieldIcon: const Icon(Icons.person_outline_sharp),
+            fieldTittle: userController.user.value.fullname.toString()),
+        Field(
+            fieldIcon: const Icon(Icons.phone_outlined),
+            fieldTittle: userController.user.value.phone.toString()),
+        Field(
+            fieldIcon: const Icon(Icons.email_outlined),
+            fieldTittle: userController.user.value.email.toString()),
+        ElevatedButton(
+            onPressed: () {
+              UserController.logOut();
+              context.router.push(RootScreen());
+            },
+            child: const Expanded(child: AutoSizeText("Log Out")))
       ],
     );
   }

@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:e_commerce/src/shared/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce/routes/router.gr.dart';
+import 'package:get/instance_manager.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class FormLogin extends StatelessWidget {
-  const FormLogin({
+  FormLogin({
     Key? key,
     required this.usernameController,
     required this.passwordController,
@@ -38,6 +40,8 @@ class FormLogin extends StatelessWidget {
 
   final TextEditingController usernameController;
   final TextEditingController passwordController;
+
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,7 @@ class FormLogin extends StatelessWidget {
                   const SizedBox(height: 43),
                   TextFormField(
                     controller: passwordController,
+                    obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -90,7 +95,10 @@ class FormLogin extends StatelessWidget {
                     height: 56,
                     width: 240,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => UserController.login(
+                        usernameController.text,
+                        passwordController.text,
+                      ),
                       child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(36.63, 17, 36.63, 17),

@@ -1,17 +1,13 @@
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/state_manager.dart';
 
 class User extends GetxController {
-  User(
-      {required this.username,
-      required this.fullname,
-      required this.address,
-      required this.email,
-      this.password});
+  User({this.username, this.fullname, this.phone, this.email, this.password});
 
-  String username;
-  String fullname;
-  String address;
-  String email;
+  String? username;
+  String? fullname;
+  String? phone;
+  String? email;
   String? password;
 
   static User fromJson(jsonData) {
@@ -19,7 +15,7 @@ class User extends GetxController {
         email: jsonData['email'],
         fullname: jsonData['name'],
         username: jsonData['username'],
-        address: jsonData['address']);
+        phone: jsonData['address']);
   }
 }
 

@@ -5,8 +5,8 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 
-List<Product> productFromJson(String str) =>
-    List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+List<Product> productFromJson(String str) => List<Product>.from(
+    json.decode(str)['products'].map((x) => Product.fromJson(x)));
 
 String productToJson(List<Product> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -63,7 +63,7 @@ class Product {
         price: json["price"],
         priceSign: json["price_sign"],
         currency: json["currency"],
-        imageLink: json["image_link"],
+        imageLink: json["image"],
         productLink: json["product_link"],
         websiteLink: json["website_link"],
         description: json["description"],

@@ -91,8 +91,10 @@ class myAppRouter extends _i4.RootStackRouter {
           routeData: routeData, child: _i8.VendorScreen(key: args.key));
     },
     ProfileScreen.name: (routeData) {
+      final args = routeData.argsAs<ProfileScreenArgs>(
+          orElse: () => const ProfileScreenArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i9.ProfileScreen());
+          routeData: routeData, child: _i9.ProfileScreen(key: args.key));
     }
   };
 
@@ -322,8 +324,20 @@ class VendorScreenArgs {
 
 /// generated route for
 /// [_i9.ProfileScreen]
-class ProfileScreen extends _i4.PageRouteInfo<void> {
-  const ProfileScreen() : super(ProfileScreen.name, path: '');
+class ProfileScreen extends _i4.PageRouteInfo<ProfileScreenArgs> {
+  ProfileScreen({_i10.Key? key})
+      : super(ProfileScreen.name, path: '', args: ProfileScreenArgs(key: key));
 
   static const String name = 'ProfileScreen';
+}
+
+class ProfileScreenArgs {
+  const ProfileScreenArgs({this.key});
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileScreenArgs{key: $key}';
+  }
 }

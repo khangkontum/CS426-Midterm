@@ -1,4 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
+import 'package:e_commerce/src/features/user/models/user.dart';
 import 'package:e_commerce/src/shared/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -8,14 +10,14 @@ class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
 
   final _inputController = TextEditingController();
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var usernameController = TextEditingController();
+  var passwordController = TextEditingController();
+  var phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var nameController = TextEditingController();
-    var emailController = TextEditingController();
-    var usernameController = TextEditingController();
-    var passwordController = TextEditingController();
-    var phoneController = TextEditingController();
     return SingleChildScrollView(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -145,7 +147,12 @@ class FormColumn extends StatelessWidget {
           height: 56,
           width: 240,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => UserController.signUp(User(
+                email: emailController.text,
+                password: passwordController.text,
+                phone: phoneController.text,
+                username: usernameController.text,
+                fullname: nameController.text)),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(36.63, 17, 36.63, 17),
               child: Row(
