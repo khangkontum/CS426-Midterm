@@ -2,6 +2,7 @@ import 'package:e_commerce/src/features/vendors/controllers/vendor_controller.da
 import 'package:e_commerce/src/features/vendors/widgets/vendor_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class VendorScreen extends StatelessWidget {
   VendorScreen({Key? key}) : super(key: key);
@@ -12,14 +13,23 @@ class VendorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: AppBar(
-          elevation: 0,
-          centerTitle: false,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'Vendors',
-            style: Theme.of(context).textTheme.headline1,
+        preferredSize: const Size.fromHeight(100),
+        child: Container(
+          color: Colors.transparent,
+          child: Row(
+            children: [
+              const SizedBox(width: 20),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AutoSizeText(
+                    "Vendors",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

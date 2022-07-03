@@ -12,13 +12,25 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: false,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'Cart',
-            style: Theme.of(context).textTheme.headline1,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100),
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                const SizedBox(width: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      "Cart",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         body: Obx(() {

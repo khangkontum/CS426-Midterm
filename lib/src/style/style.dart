@@ -3,11 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme(BuildContext context) {
   return ThemeData(
-      backgroundColor: Color(0xFFFF97B7),
+      backgroundColor: const Color(0xFFFF97B7),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15))),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+        primary: const Color(0xFFFF97B7),
+        textStyle: Theme.of(context)
+            .textTheme
+            .bodyText1
+            ?.copyWith(fontWeight: FontWeight.bold),
+        side: const BorderSide(color: Color(0xFFFF97B7)),
+      )),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           primary: const Color(0xFFFF97B7),
           elevation: 0,
           onPrimary: Colors.white,
@@ -24,9 +38,9 @@ ThemeData appTheme(BuildContext context) {
           fontSize: 18,
         ),
         subtitle2: GoogleFonts.aBeeZee(
-          color: const Color(0xFF2D0C57),
-          fontSize: 14,
-        ),
+            color: const Color(0xFF2D0C57),
+            fontSize: 14,
+            fontWeight: FontWeight.w300),
         bodyText1: GoogleFonts.aBeeZee(
           color: const Color(0xFF9586A8),
           fontSize: 12,

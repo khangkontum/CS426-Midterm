@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:e_commerce/routes/router.gr.dart';
 import 'package:e_commerce/src/features/product_listing/controllers/product_controller.dart';
 import 'package:e_commerce/src/features/product_listing/widgets/product_tile.dart';
@@ -14,14 +15,23 @@ class ProductListing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: AppBar(
-            elevation: 0,
-            centerTitle: false,
-            backgroundColor: Colors.transparent,
-            title: Text(
-              'All Products',
-              style: Theme.of(context).textTheme.headline1,
+          preferredSize: const Size.fromHeight(100),
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                const SizedBox(width: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      "All Products",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

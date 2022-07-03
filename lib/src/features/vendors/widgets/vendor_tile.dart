@@ -11,7 +11,7 @@ class VendorTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 0.5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
