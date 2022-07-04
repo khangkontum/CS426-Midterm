@@ -11,8 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i11;
-import 'package:flutter/src/foundation/key.dart' as _i12;
+import 'package:flutter/material.dart' as _i12;
 
 import '../src/features/cart/presentation/cart_screen.dart' as _i7;
 import '../src/features/home/presentation/home_screen.dart' as _i3;
@@ -22,13 +21,15 @@ import '../src/features/product_listing/presentation/product_detail_screen.dart'
     as _i6;
 import '../src/features/product_listing/presentation/product_listing_screen.dart'
     as _i5;
-import '../src/features/profile/presentation/profile_screen.dart' as _i10;
+import '../src/features/profile/presentation/profile_screen.dart' as _i11;
 import '../src/features/root/features/signup/signup_screen.dart' as _i2;
 import '../src/features/root/presentatition/root_screen.dart' as _i1;
+import '../src/features/vendors/features/presentation/vendor_screen.dart'
+    as _i10;
 import '../src/features/vendors/presentation/vendor_screen.dart' as _i8;
 
 class myAppRouter extends _i4.RootStackRouter {
-  myAppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
+  myAppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -96,11 +97,18 @@ class myAppRouter extends _i4.RootStackRouter {
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i9.MapScreen());
     },
+    VendorDetailScreen.name: (routeData) {
+      final args = routeData.argsAs<VendorDetailScreenArgs>();
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child:
+              _i10.VendorDetailScreen(key: args.key, vendorId: args.vendorId));
+    },
     ProfileScreen.name: (routeData) {
       final args = routeData.argsAs<ProfileScreenArgs>(
           orElse: () => const ProfileScreenArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i10.ProfileScreen(key: args.key));
+          routeData: routeData, child: _i11.ProfileScreen(key: args.key));
     }
   };
 
@@ -132,7 +140,9 @@ class myAppRouter extends _i4.RootStackRouter {
                 _i4.RouteConfig(VendorScreen.name,
                     path: '', parent: VendorRoute.name),
                 _i4.RouteConfig(MapScreen.name,
-                    path: 'maps', parent: VendorRoute.name)
+                    path: 'maps', parent: VendorRoute.name),
+                _i4.RouteConfig(VendorDetailScreen.name,
+                    path: 'vendor_detail', parent: VendorRoute.name)
               ]),
           _i4.RouteConfig(ProfileRoute.name,
               path: 'profile',
@@ -339,7 +349,31 @@ class MapScreen extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.ProfileScreen]
+/// [_i10.VendorDetailScreen]
+class VendorDetailScreen extends _i4.PageRouteInfo<VendorDetailScreenArgs> {
+  VendorDetailScreen({_i12.Key? key, required dynamic vendorId})
+      : super(VendorDetailScreen.name,
+            path: 'vendor_detail',
+            args: VendorDetailScreenArgs(key: key, vendorId: vendorId));
+
+  static const String name = 'VendorDetailScreen';
+}
+
+class VendorDetailScreenArgs {
+  const VendorDetailScreenArgs({this.key, required this.vendorId});
+
+  final _i12.Key? key;
+
+  final dynamic vendorId;
+
+  @override
+  String toString() {
+    return 'VendorDetailScreenArgs{key: $key, vendorId: $vendorId}';
+  }
+}
+
+/// generated route for
+/// [_i11.ProfileScreen]
 class ProfileScreen extends _i4.PageRouteInfo<ProfileScreenArgs> {
   ProfileScreen({_i12.Key? key})
       : super(ProfileScreen.name, path: '', args: ProfileScreenArgs(key: key));

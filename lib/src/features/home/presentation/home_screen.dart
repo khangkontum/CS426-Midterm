@@ -13,15 +13,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      // appBarBuilder: (_, tabsRouter) => PreferredSize(
-      //   preferredSize: const Size.fromHeight(0),
-      //   child: AppBar(
-      //     backgroundColor: Colors.transparent,
-      //     elevation: 0,
-      //     centerTitle: true,
-      //     leading: const AutoLeadingButton(),
-      //   ),
-      // ),
       routes: const [
         ProductRoute(),
         CartRoute(),

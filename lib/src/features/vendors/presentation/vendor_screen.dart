@@ -36,11 +36,15 @@ class VendorScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(10)),
+                onPressed: () {
+                  if (vendorController.isLoading.value == false) {
+                    context.router.push(const MapScreen());
+                  }
+                },
                 child: const Icon(
                   Icons.map,
-                  size: 20,
+                  size: 30,
                 ),
-                onPressed: () => context.router.push(MapScreen()),
               ),
             ],
           ),
@@ -61,7 +65,11 @@ class VendorScreen extends StatelessWidget {
                       mainAxisSpacing: 20),
                   itemCount: vendorController.vendorList.value.length,
                   itemBuilder: (_, index) => VendorTile(
-                      vendor: vendorController.vendorList.value[index])));
+                        vendor: vendorController.vendorList.value[index],
+                        onTap: () => context.router.push(VendorDetailScreen(
+                          vendorId: vendorController.vendorList.value[index].id,
+                        )),
+                      )));
         }
       }),
     );

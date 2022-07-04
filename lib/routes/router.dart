@@ -6,6 +6,7 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_det
 import 'package:e_commerce/src/features/profile/presentation/profile_screen.dart';
 import 'package:e_commerce/src/features/root/features/signup/signup_screen.dart';
 import 'package:e_commerce/src/features/root/presentatition/root_screen.dart';
+import 'package:e_commerce/src/features/vendors/features/presentation/vendor_screen.dart';
 import 'package:e_commerce/src/features/vendors/presentation/vendor_screen.dart';
 import 'package:e_commerce/src/features/product_listing/presentation/product_listing_screen.dart';
 
@@ -61,6 +62,10 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
               AutoRoute(
                 path: 'maps',
                 page: MapScreen,
+              ),
+              AutoRoute(
+                path: 'vendor_detail',
+                page: VendorDetailScreen,
               )
             ]),
         AutoRoute(

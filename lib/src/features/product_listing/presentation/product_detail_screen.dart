@@ -17,10 +17,14 @@ class ProductDetail extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+          leading: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(), padding: const EdgeInsets.all(2)),
+            child: const Icon(
+              Icons.arrow_back,
+              size: 30,
+            ),
             onPressed: () => context.router.pop(),
-            color: Colors.black,
           ),
         ),
         body: DetailBody(
@@ -96,100 +100,6 @@ class DetailBody extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Body extends StatelessWidget {
-  Body({Key? key, this.product}) : super(key: key);
-  Product? product;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * .6,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            child: Image.network(
-              product!.imageLink.toString(),
-              fit: BoxFit.fitWidth,
-              errorBuilder: (context, exception, stackTrace) => Image.asset(
-                'image/error_image.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * .5,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-              color: Colors.white,
-            ),
-            child: Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: AutoSizeText(
-                        product!.name.toString(),
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          AutoSizeText(
-                            product!.price.toString(),
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
-                          AutoSizeText(
-                            product!.priceSign == Null
-                                ? product!.priceSign.toString()
-                                : "\$",
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 51),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: AutoSizeText(
-                        product!.description.toString(),
-                        maxLines: 10,
-                      ),
-                    ),
-                    const Spacer(),
-                    Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 266,
-                              height: 52,
-                              child: AddToCartButton(product: product),
-                            )
-                          ],
-                        ))
-                  ],
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
     );
   }
 }

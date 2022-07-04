@@ -20,9 +20,9 @@ class Item {
 
 Item itemFromProduct(Product? prod) {
   Item it = Item();
-  if (prod!.name != Null) it.name = prod.name;
-  if (prod!.id != Null) it.id = prod.id;
-  if (prod!.imageLink != Null) it.imageLink = prod.imageLink;
-  if (prod!.price != Null) it.price = double.parse(prod.price.toString());
+  if (prod!.name != null) it.name = prod.name;
+  if (prod.id != null) it.id = prod.id;
+  if (prod.imageLink != null) it.imageLink = prod.imageLink;
+  if (prod.price != null) it.price = double.parse(prod.price.toString());
   return it;
 }
