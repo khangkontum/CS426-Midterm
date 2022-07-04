@@ -18,10 +18,11 @@ class User extends GetxController {
 
   static User fromJson(jsonData) {
     return User(
-        email: jsonData['email'],
-        fullname: jsonData['name'],
-        username: jsonData['username'],
-        phone: jsonData['address']);
+      email: jsonData['email'],
+      fullname: jsonData['name'],
+      username: jsonData['username'],
+      phone: jsonData['phone'],
+    );
   }
 }
 
