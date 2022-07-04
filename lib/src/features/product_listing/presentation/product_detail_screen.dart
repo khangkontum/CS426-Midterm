@@ -61,6 +61,7 @@ class DetailBody extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

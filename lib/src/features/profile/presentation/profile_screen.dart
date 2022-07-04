@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 70),
           const AppLogo(),
           const SizedBox(height: 20),
           Field(
@@ -47,7 +48,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: AutoSizeText(
                   "Log Out",
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(color: Colors.white),
                 ),
               ))
         ],
