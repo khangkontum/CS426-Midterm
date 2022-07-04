@@ -8,7 +8,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 class ProductListing extends StatefulWidget {
-  ProductListing({Key? key}) : super(key: key);
+  const ProductListing({Key? key}) : super(key: key);
 
   @override
   State<ProductListing> createState() => _ProductListingState();

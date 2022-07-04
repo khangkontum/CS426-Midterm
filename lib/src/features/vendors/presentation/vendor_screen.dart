@@ -122,8 +122,11 @@ class VendorInfo extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
-                    onPressed: () => context.router.push(
-                        VendorDetailScreen(vendorId: vendorInf.id.toString())),
+                    onPressed: () {
+                      Get.delete<IndividualVendor>();
+                      context.router.push(VendorDetailScreen(
+                          vendorId: vendorInf.id.toString()));
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

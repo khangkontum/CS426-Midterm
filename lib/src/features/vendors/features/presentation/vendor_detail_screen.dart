@@ -138,6 +138,7 @@ class VendorLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const SizedBox(width: 20),
         SizedBox(
           width: size.width * 1 / 4,
           child: ImageNetwork(imageLink: vendorInf.imageLink),

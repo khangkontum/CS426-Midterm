@@ -69,10 +69,8 @@ class myAppRouter extends _i4.RootStackRouter {
           routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     ProductListing.name: (routeData) {
-      final args = routeData.argsAs<ProductListingArgs>(
-          orElse: () => const ProductListingArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i5.ProductListing(key: args.key));
+          routeData: routeData, child: const _i5.ProductListing());
     },
     ProductDetail.name: (routeData) {
       final args = routeData.argsAs<ProductDetailArgs>(
@@ -259,23 +257,10 @@ class ProfileRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ProductListing]
-class ProductListing extends _i4.PageRouteInfo<ProductListingArgs> {
-  ProductListing({_i12.Key? key})
-      : super(ProductListing.name,
-            path: '', args: ProductListingArgs(key: key));
+class ProductListing extends _i4.PageRouteInfo<void> {
+  const ProductListing() : super(ProductListing.name, path: '');
 
   static const String name = 'ProductListing';
-}
-
-class ProductListingArgs {
-  const ProductListingArgs({this.key});
-
-  final _i12.Key? key;
-
-  @override
-  String toString() {
-    return 'ProductListingArgs{key: $key}';
-  }
 }
 
 /// generated route for

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:e_commerce/src/features/vendors/models/vendor.dart';
 import 'package:e_commerce/src/services/remote_services.dart';
 import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
 
 class VendorController extends GetxController {
@@ -19,6 +20,7 @@ class VendorController extends GetxController {
     try {
       isLoading.value = true;
       var response = await RemoteService.fetchVendors();
+      if (response == null) return;
       vendorList.value = RxList.from(response!.toList());
     } finally {
       isLoading.value = false;
@@ -35,7 +37,7 @@ class IndividualVendor extends GetxController {
   var productList = RxList<Product>().obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     fetchVendor(vendorId);
   }
@@ -44,6 +46,7 @@ class IndividualVendor extends GetxController {
     try {
       isLoading.value = true;
       var response = await RemoteService.fetchVendor(vendorId);
+      if (response == null) return;
       productList.value =
           RxList.from(productFromVendorJson(response.toString()).toList());
       vendorInfo = Vendor.fromJson(json.decode(response.toString())['store']);

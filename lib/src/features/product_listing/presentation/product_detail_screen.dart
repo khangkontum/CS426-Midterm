@@ -3,7 +3,6 @@ import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/cart/models/item.dart';
 import 'package:e_commerce/src/shared/image_network.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
 
 class ProductDetail extends StatelessWidget {
@@ -14,22 +13,22 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: const CircleBorder(), padding: const EdgeInsets.all(2)),
-            child: const Icon(
-              Icons.arrow_back,
-              size: 30,
-            ),
-            onPressed: () => context.router.pop(),
-          ),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0,
+        //   leading: ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //         shape: const CircleBorder(), padding: const EdgeInsets.all(2)),
+        //     child: const Icon(
+        //       Icons.arrow_back,
+        //       size: 30,
+        //     ),
+        //     onPressed: () => context.router.pop(),
+        //   ),
+        // ),
         body: DetailBody(
-          product: product,
-        ));
+      product: product,
+    ));
   }
 }
 
@@ -45,11 +44,12 @@ class DetailBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height: 70),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(47, 0, 47, 13),
+                  padding: const EdgeInsets.fromLTRB(47, 0, 47, 13),
                   child: SizedBox(
                       height: size.width * .77,
                       width: size.width * .77,
