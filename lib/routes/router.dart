@@ -63,6 +63,14 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
                 path: 'maps',
                 page: MapScreen,
               ),
+              AutoRoute(
+                path: 'vendor_datail',
+                page: VendorDetailScreen,
+              ),
+              AutoRoute(
+                path: 'productDetail',
+                page: ProductDetail,
+              )
             ]),
         AutoRoute(
             path: 'profile',

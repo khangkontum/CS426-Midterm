@@ -1,6 +1,7 @@
 import 'package:e_commerce/src/features/vendors/controllers/vendor_controller.dart';
 import 'package:e_commerce/src/features/vendors/models/vendor.dart';
 import 'package:e_commerce/src/features/vendors/widgets/vendor_tile.dart';
+import 'package:e_commerce/src/shared/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -67,23 +68,12 @@ class VendorScreen extends StatelessWidget {
               itemCount: vendorController.vendorList.value.length,
               itemBuilder: (_, index) => VendorTile(
                 vendor: vendorController.vendorList.value[index],
-                // onTap: () {
-                //   print("vendor screen");
-                //   context.router.push(VendorDetailScreen(
-                //     vendorId:
-                //         vendorController.vendorList.value[index].id.toString(),
-                //   ));
-                // },
                 onTap: () => showModalBottomSheet(
                     // enableDrag: false,
                     // isDismissible: false,
                     isScrollControlled: true,
                     context: context,
                     backgroundColor: Colors.transparent,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30),
-                            topLeft: Radius.circular(30))),
                     builder: (context) => VendorInfo(
                           vendorInf: vendorController.vendorList.value[index],
                         )),
@@ -103,20 +93,79 @@ class VendorInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return DraggableScrollableSheet(
         initialChildSize: 0.5,
         maxChildSize: 0.7,
         minChildSize: 0.2,
         builder: (_, controller) => Container(
-              color: Colors.white,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    topLeft: Radius.circular(30)),
+                color: Colors.white,
+              ),
               padding: const EdgeInsets.symmetric(
                 vertical: 23,
                 horizontal: 20,
               ),
               child: ListView(
                 controller: controller,
-                children: [AutoSizeText(vendorInf.description)],
+                children: [
+                  VendorLogo(size: size, vendorInf: vendorInf),
+                  const SizedBox(height: 29),
+                  AutoSizeText(
+                    vendorInf.description,
+                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        color: const Color(0xFF9586A8),
+                        fontWeight: FontWeight.w400),
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: () => context.router.push(
+                        VendorDetailScreen(vendorId: vendorInf.id.toString())),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 0, vertical: 16),
+                            child: AutoSizeText("SEE ALL PRODUCTS"))
+                      ],
+                    ),
+                  )
+                ],
               ),
             ));
+  }
+}
+
+class VendorLogo extends StatelessWidget {
+  const VendorLogo({
+    Key? key,
+    required this.size,
+    required this.vendorInf,
+  }) : super(key: key);
+
+  final Size size;
+  final Vendor vendorInf;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: size.height * 0.09,
+          child: ImageNetwork(imageLink: vendorInf.imageLink),
+        ),
+        const SizedBox(width: 13),
+        AutoSizeText(
+          vendorInf.name,
+          style: Theme.of(context).textTheme.headline1,
+        )
+      ],
+    );
   }
 }

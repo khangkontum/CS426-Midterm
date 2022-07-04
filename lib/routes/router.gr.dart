@@ -11,23 +11,25 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
 import '../src/features/cart/presentation/cart_screen.dart' as _i7;
 import '../src/features/home/presentation/home_screen.dart' as _i3;
 import '../src/features/map/presentation/map_screen.dart' as _i9;
-import '../src/features/product_listing/models/product.dart' as _i12;
+import '../src/features/product_listing/models/product.dart' as _i13;
 import '../src/features/product_listing/presentation/product_detail_screen.dart'
     as _i6;
 import '../src/features/product_listing/presentation/product_listing_screen.dart'
     as _i5;
-import '../src/features/profile/presentation/profile_screen.dart' as _i10;
+import '../src/features/profile/presentation/profile_screen.dart' as _i11;
 import '../src/features/root/features/signup/signup_screen.dart' as _i2;
 import '../src/features/root/presentatition/root_screen.dart' as _i1;
+import '../src/features/vendors/features/presentation/vendor_detail_screen.dart'
+    as _i10;
 import '../src/features/vendors/presentation/vendor_screen.dart' as _i8;
 
 class myAppRouter extends _i4.RootStackRouter {
-  myAppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
+  myAppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -95,11 +97,18 @@ class myAppRouter extends _i4.RootStackRouter {
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i9.MapScreen());
     },
+    VendorDetailScreen.name: (routeData) {
+      final args = routeData.argsAs<VendorDetailScreenArgs>();
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child:
+              _i10.VendorDetailScreen(key: args.key, vendorId: args.vendorId));
+    },
     ProfileScreen.name: (routeData) {
       final args = routeData.argsAs<ProfileScreenArgs>(
           orElse: () => const ProfileScreenArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i10.ProfileScreen(key: args.key));
+          routeData: routeData, child: _i11.ProfileScreen(key: args.key));
     }
   };
 
@@ -131,7 +140,11 @@ class myAppRouter extends _i4.RootStackRouter {
                 _i4.RouteConfig(VendorScreen.name,
                     path: '', parent: VendorRoute.name),
                 _i4.RouteConfig(MapScreen.name,
-                    path: 'maps', parent: VendorRoute.name)
+                    path: 'maps', parent: VendorRoute.name),
+                _i4.RouteConfig(VendorDetailScreen.name,
+                    path: 'vendor_datail', parent: VendorRoute.name),
+                _i4.RouteConfig(ProductDetail.name,
+                    path: 'productDetail', parent: VendorRoute.name)
               ]),
           _i4.RouteConfig(ProfileRoute.name,
               path: 'profile',
@@ -147,7 +160,7 @@ class myAppRouter extends _i4.RootStackRouter {
 /// generated route for
 /// [_i1.RootScreen]
 class RootScreen extends _i4.PageRouteInfo<RootScreenArgs> {
-  RootScreen({_i11.Key? key})
+  RootScreen({_i12.Key? key})
       : super(RootScreen.name, path: '/', args: RootScreenArgs(key: key));
 
   static const String name = 'RootScreen';
@@ -156,7 +169,7 @@ class RootScreen extends _i4.PageRouteInfo<RootScreenArgs> {
 class RootScreenArgs {
   const RootScreenArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -167,7 +180,7 @@ class RootScreenArgs {
 /// generated route for
 /// [_i2.SignupScreen]
 class SignupScreen extends _i4.PageRouteInfo<SignupScreenArgs> {
-  SignupScreen({_i11.Key? key})
+  SignupScreen({_i12.Key? key})
       : super(SignupScreen.name,
             path: '/signup', args: SignupScreenArgs(key: key));
 
@@ -177,7 +190,7 @@ class SignupScreen extends _i4.PageRouteInfo<SignupScreenArgs> {
 class SignupScreenArgs {
   const SignupScreenArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -188,7 +201,7 @@ class SignupScreenArgs {
 /// generated route for
 /// [_i3.HomePage]
 class HomeRoute extends _i4.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i11.Key? key, List<_i4.PageRouteInfo>? children})
+  HomeRoute({_i12.Key? key, List<_i4.PageRouteInfo>? children})
       : super(HomeRoute.name,
             path: '/home',
             args: HomeRouteArgs(key: key),
@@ -200,7 +213,7 @@ class HomeRoute extends _i4.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -247,7 +260,7 @@ class ProfileRoute extends _i4.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.ProductListing]
 class ProductListing extends _i4.PageRouteInfo<ProductListingArgs> {
-  ProductListing({_i11.Key? key})
+  ProductListing({_i12.Key? key})
       : super(ProductListing.name,
             path: '', args: ProductListingArgs(key: key));
 
@@ -257,7 +270,7 @@ class ProductListing extends _i4.PageRouteInfo<ProductListingArgs> {
 class ProductListingArgs {
   const ProductListingArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -268,7 +281,7 @@ class ProductListingArgs {
 /// generated route for
 /// [_i6.ProductDetail]
 class ProductDetail extends _i4.PageRouteInfo<ProductDetailArgs> {
-  ProductDetail({_i11.Key? key, _i12.Product? product})
+  ProductDetail({_i12.Key? key, _i13.Product? product})
       : super(ProductDetail.name,
             path: 'productDetail',
             args: ProductDetailArgs(key: key, product: product));
@@ -279,9 +292,9 @@ class ProductDetail extends _i4.PageRouteInfo<ProductDetailArgs> {
 class ProductDetailArgs {
   const ProductDetailArgs({this.key, this.product});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
-  final _i12.Product? product;
+  final _i13.Product? product;
 
   @override
   String toString() {
@@ -292,7 +305,7 @@ class ProductDetailArgs {
 /// generated route for
 /// [_i7.CartScreen]
 class CartScreen extends _i4.PageRouteInfo<CartScreenArgs> {
-  CartScreen({_i11.Key? key})
+  CartScreen({_i12.Key? key})
       : super(CartScreen.name, path: '', args: CartScreenArgs(key: key));
 
   static const String name = 'CartScreen';
@@ -301,7 +314,7 @@ class CartScreen extends _i4.PageRouteInfo<CartScreenArgs> {
 class CartScreenArgs {
   const CartScreenArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -312,7 +325,7 @@ class CartScreenArgs {
 /// generated route for
 /// [_i8.VendorScreen]
 class VendorScreen extends _i4.PageRouteInfo<VendorScreenArgs> {
-  VendorScreen({_i11.Key? key})
+  VendorScreen({_i12.Key? key})
       : super(VendorScreen.name, path: '', args: VendorScreenArgs(key: key));
 
   static const String name = 'VendorScreen';
@@ -321,7 +334,7 @@ class VendorScreen extends _i4.PageRouteInfo<VendorScreenArgs> {
 class VendorScreenArgs {
   const VendorScreenArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -338,9 +351,33 @@ class MapScreen extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.ProfileScreen]
+/// [_i10.VendorDetailScreen]
+class VendorDetailScreen extends _i4.PageRouteInfo<VendorDetailScreenArgs> {
+  VendorDetailScreen({_i12.Key? key, required String vendorId})
+      : super(VendorDetailScreen.name,
+            path: 'vendor_datail',
+            args: VendorDetailScreenArgs(key: key, vendorId: vendorId));
+
+  static const String name = 'VendorDetailScreen';
+}
+
+class VendorDetailScreenArgs {
+  const VendorDetailScreenArgs({this.key, required this.vendorId});
+
+  final _i12.Key? key;
+
+  final String vendorId;
+
+  @override
+  String toString() {
+    return 'VendorDetailScreenArgs{key: $key, vendorId: $vendorId}';
+  }
+}
+
+/// generated route for
+/// [_i11.ProfileScreen]
 class ProfileScreen extends _i4.PageRouteInfo<ProfileScreenArgs> {
-  ProfileScreen({_i11.Key? key})
+  ProfileScreen({_i12.Key? key})
       : super(ProfileScreen.name, path: '', args: ProfileScreenArgs(key: key));
 
   static const String name = 'ProfileScreen';
@@ -349,7 +386,7 @@ class ProfileScreen extends _i4.PageRouteInfo<ProfileScreenArgs> {
 class ProfileScreenArgs {
   const ProfileScreenArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
