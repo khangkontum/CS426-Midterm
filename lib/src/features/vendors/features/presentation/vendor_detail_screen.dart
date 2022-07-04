@@ -1,10 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:e_commerce/src/features/cart/controllers/cart.dart';
-import 'package:e_commerce/src/features/cart/models/item.dart';
-import 'package:e_commerce/src/shared/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:e_commerce/src/features/product_listing/models/product.dart';
 
 class VendorDetailScreen extends StatelessWidget {
   const VendorDetailScreen({
@@ -16,6 +11,7 @@ class VendorDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('tmp');
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -37,7 +33,7 @@ class VendorDetailScreen extends StatelessWidget {
 }
 
 class DetailBody extends StatelessWidget {
-  DetailBody({Key? key, required this.vendorId}) : super(key: key);
+  const DetailBody({Key? key, required this.vendorId}) : super(key: key);
   final String vendorId;
   @override
   Widget build(BuildContext context) {

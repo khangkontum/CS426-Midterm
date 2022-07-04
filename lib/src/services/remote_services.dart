@@ -41,6 +41,21 @@ class RemoteService {
     }
   }
 
+  static Future<List<Vendor>?> fetchVendor(String vendorId) async {
+    try {
+      var url = dotenv.env["PREFIX"].toString() + '/stores/' + vendorId;
+      var response = await client.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        var jsonData = response.body;
+        return vendorFromJson(jsonData);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
   static Future<String?> requestLogIn(username, password) async {
     try {
       var url = dotenv.env["PREFIX"].toString() + "/auth/login";

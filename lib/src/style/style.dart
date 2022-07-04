@@ -7,7 +7,7 @@ ThemeData appTheme(BuildContext context) {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
       backgroundColor: const Color(0xFFFF97B7),
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)))),
       textButtonTheme: TextButtonThemeData(

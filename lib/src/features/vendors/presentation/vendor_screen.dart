@@ -1,4 +1,5 @@
 import 'package:e_commerce/src/features/vendors/controllers/vendor_controller.dart';
+import 'package:e_commerce/src/features/vendors/models/vendor.dart';
 import 'package:e_commerce/src/features/vendors/widgets/vendor_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,22 +57,66 @@ class VendorScreen extends StatelessWidget {
         } else {
           Size size = MediaQuery.of(context).size;
           return Padding(
-              padding: const EdgeInsets.all(20),
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: size.width / 2,
-                      // childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: vendorController.vendorList.value.length,
-                  itemBuilder: (_, index) => VendorTile(
-                        vendor: vendorController.vendorList.value[index],
-                        onTap: () => context.router.push(VendorDetailScreen(
-                          vendorId: vendorController.vendorList.value[index].id,
+            padding: const EdgeInsets.all(20),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: size.width / 2,
+                  // childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
+              itemCount: vendorController.vendorList.value.length,
+              itemBuilder: (_, index) => VendorTile(
+                vendor: vendorController.vendorList.value[index],
+                // onTap: () {
+                //   print("vendor screen");
+                //   context.router.push(VendorDetailScreen(
+                //     vendorId:
+                //         vendorController.vendorList.value[index].id.toString(),
+                //   ));
+                // },
+                onTap: () => showModalBottomSheet(
+                    // enableDrag: false,
+                    // isDismissible: false,
+                    isScrollControlled: true,
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30))),
+                    builder: (context) => VendorInfo(
+                          vendorInf: vendorController.vendorList.value[index],
                         )),
-                      )));
+              ),
+            ),
+          );
         }
       }),
     );
+  }
+}
+
+class VendorInfo extends StatelessWidget {
+  const VendorInfo({Key? key, required this.vendorInf}) : super(key: key);
+
+  final Vendor vendorInf;
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+        initialChildSize: 0.5,
+        maxChildSize: 0.7,
+        minChildSize: 0.2,
+        builder: (_, controller) => Container(
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(
+                vertical: 23,
+                horizontal: 20,
+              ),
+              child: ListView(
+                controller: controller,
+                children: [AutoSizeText(vendorInf.description)],
+              ),
+            ));
   }
 }
