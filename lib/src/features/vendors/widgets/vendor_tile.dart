@@ -15,9 +15,11 @@ class VendorTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Stack(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   height: 80,
@@ -26,30 +28,30 @@ class VendorTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Image.asset(
-                    'image/${vendor.imageLink}',
+                  child: Image.network(
+                    vendor.imageLink,
                     fit: BoxFit.fitHeight,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: AutoSizeText(
-                vendor.name,
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-            ),
-            const SizedBox(height: 8),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: AutoSizeText(
-                vendor.long.toString(),
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-            ),
-            const SizedBox(height: 8),
+            // const SizedBox(height: 8),
+            // FittedBox(
+            //   fit: BoxFit.fitWidth,
+            //   child: AutoSizeText(
+            //     vendor.name,
+            //     style: Theme.of(context).textTheme.subtitle1,
+            //   ),
+            // ),
+            // const SizedBox(height: 8),
+            // FittedBox(
+            //   fit: BoxFit.fitWidth,
+            //   child: AutoSizeText(
+            //     vendor.long.toString(),
+            //     style: Theme.of(context).textTheme.subtitle2,
+            //   ),
+            // ),
+            // const SizedBox(height: 8),
             // Text('\$${vendor.price}',
             //     style: TextStyle(fontSize: 32, fontFamily: 'avenir')),
           ],

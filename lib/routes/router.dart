@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce/src/features/cart/presentation/cart_screen.dart';
 import 'package:e_commerce/src/features/home/presentation/home_screen.dart';
+import 'package:e_commerce/src/features/map/presentation/map_screen.dart';
 import 'package:e_commerce/src/features/product_listing/presentation/product_detail_screen.dart';
 import 'package:e_commerce/src/features/profile/presentation/profile_screen.dart';
 import 'package:e_commerce/src/features/root/features/signup/signup_screen.dart';
@@ -56,6 +57,10 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
               AutoRoute(
                 path: '',
                 page: VendorScreen,
+              ),
+              AutoRoute(
+                path: 'maps',
+                page: MapScreen,
               )
             ]),
         AutoRoute(
@@ -69,7 +74,7 @@ import 'package:e_commerce/src/features/product_listing/presentation/product_lis
               )
             ]),
       ],
-    )
+    ),
   ],
 )
 class $myAppRouter {}

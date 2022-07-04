@@ -3,6 +3,8 @@ import 'package:e_commerce/src/features/vendors/widgets/vendor_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce/routes/router.gr.dart';
 
 class VendorScreen extends StatelessWidget {
   VendorScreen({Key? key}) : super(key: key);
@@ -14,8 +16,8 @@ class VendorScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
-        child: Container(
-          color: Colors.transparent,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
           child: Row(
             children: [
               const SizedBox(width: 20),
@@ -28,6 +30,17 @@ class VendorScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ],
+              ),
+              const Spacer(),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(10)),
+                child: const Icon(
+                  Icons.map,
+                  size: 20,
+                ),
+                onPressed: () => context.router.push(MapScreen()),
               ),
             ],
           ),

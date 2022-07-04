@@ -12,31 +12,46 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const AppLogo(),
-        const SizedBox(height: 20),
-        Field(
-            fieldIcon: const Icon(Icons.verified_user_outlined),
-            fieldTittle: userController.user.value.username.toString()),
-        Field(
-            fieldIcon: const Icon(Icons.person_outline_sharp),
-            fieldTittle: userController.user.value.fullname.toString()),
-        Field(
-            fieldIcon: const Icon(Icons.phone_outlined),
-            fieldTittle: userController.user.value.phone.toString()),
-        Field(
-            fieldIcon: const Icon(Icons.email_outlined),
-            fieldTittle: userController.user.value.email.toString()),
-        ElevatedButton(
-            onPressed: () {
-              UserController.logOut();
-              context.router.push(RootScreen());
-            },
-            child: const Expanded(child: AutoSizeText("Log Out")))
-      ],
+    Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      height: size.height,
+      width: size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const AppLogo(),
+          const SizedBox(height: 20),
+          Field(
+              fieldIcon: const Icon(Icons.verified_user_outlined),
+              fieldTittle: userController.user.value.username.toString()),
+          Field(
+              fieldIcon: const Icon(Icons.person_outline_sharp),
+              fieldTittle: userController.user.value.fullname.toString()),
+          Field(
+              fieldIcon: const Icon(Icons.phone_outlined),
+              fieldTittle: userController.user.value.phone.toString()),
+          Field(
+              fieldIcon: const Icon(Icons.email_outlined),
+              fieldTittle: userController.user.value.email.toString()),
+          const Spacer(),
+          ElevatedButton(
+              onPressed: () {
+                UserController.logOut();
+                context.router.push(RootScreen());
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 100,
+                ),
+                child: AutoSizeText(
+                  "Log Out",
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+              ))
+        ],
+      ),
     );
   }
 }

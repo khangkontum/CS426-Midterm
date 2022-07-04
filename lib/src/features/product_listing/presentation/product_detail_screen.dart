@@ -1,12 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/cart/models/item.dart';
+import 'package:e_commerce/src/shared/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
 
 class ProductDetail extends StatelessWidget {
-  ProductDetail({Key? key, this.product}) : super(key: key);
+  const ProductDetail({Key? key, this.product}) : super(key: key);
 
   final Product? product;
 
@@ -22,9 +23,80 @@ class ProductDetail extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        body: Body(
+        body: DetailBody(
           product: product,
         ));
+  }
+}
+
+class DetailBody extends StatelessWidget {
+  DetailBody({Key? key, required this.product}) : super(key: key);
+  Product? product;
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width,
+      height: size.height,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(47, 0, 47, 13),
+                  child: SizedBox(
+                      height: size.width * .77,
+                      width: size.width * .77,
+                      child: ImageNetwork(
+                          imageLink: product!.imageLink.toString())),
+                ),
+                AutoSizeText(
+                  product!.name.toString(),
+                  style: Theme.of(context).textTheme.headline2,
+                  textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      product!.price.toString(),
+                      style: Theme.of(context).textTheme.headline1,
+                      textAlign: TextAlign.center,
+                    ),
+                    AutoSizeText(
+                      '\$',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          ?.copyWith(color: const Color(0xFF9586A8)),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Padding(
+                padding: const EdgeInsets.all(24),
+                child: AutoSizeText(product!.description.toString(),
+                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF9586A8)))),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 266,
+                  height: 52,
+                  child: AddToCartButton(product: product),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -39,12 +111,15 @@ class Body extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * .6,
-          child: Image.network(
-            product!.imageLink.toString(),
-            fit: BoxFit.fitWidth,
-            errorBuilder: (context, exception, stackTrace) => Image.asset(
-              'image/error_image.png',
-              fit: BoxFit.cover,
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            child: Image.network(
+              product!.imageLink.toString(),
+              fit: BoxFit.fitWidth,
+              errorBuilder: (context, exception, stackTrace) => Image.asset(
+                'image/error_image.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -104,21 +179,7 @@ class Body extends StatelessWidget {
                             SizedBox(
                               width: 266,
                               height: 52,
-                              child: ElevatedButton(
-                                onPressed: () =>
-                                    addToCart(itemFromProduct(product)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: const [
-                                    Icon(
-                                      Icons.shopping_cart_outlined,
-                                    ),
-                                    SizedBox(width: 17.43),
-                                    AutoSizeText("ADD TO CART")
-                                  ],
-                                ),
-                              ),
+                              child: AddToCartButton(product: product),
                             )
                           ],
                         ))
@@ -129,6 +190,33 @@ class Body extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final Product? product;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => addToCart(itemFromProduct(product)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          Icon(
+            Icons.shopping_cart_outlined,
+          ),
+          SizedBox(width: 17.43),
+          AutoSizeText("ADD TO CART")
+        ],
+      ),
     );
   }
 }

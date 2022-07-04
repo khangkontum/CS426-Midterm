@@ -95,10 +95,13 @@ class FormLogin extends StatelessWidget {
                     height: 56,
                     width: 240,
                     child: ElevatedButton(
-                      onPressed: () => UserController.login(
-                        usernameController.text,
-                        passwordController.text,
-                      ),
+                      onPressed: () async {
+                        await UserController.login(
+                          usernameController.text,
+                          passwordController.text,
+                        );
+                        context.router.push(RootScreen());
+                      },
                       child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(36.63, 17, 36.63, 17),

@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 // import 'package:e_commerce/routes/'
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:e_commerce/routes/router.gr.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/instance_manager.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  final FlutterSecureStorage storage = Get.put(FlutterSecureStorage());
+
   runApp(MyApp());
 }
 

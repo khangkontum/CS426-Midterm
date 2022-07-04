@@ -15,14 +15,11 @@ class UserController extends GetxController {
     super.onInit();
 
     // Check if log in yet
-    final FlutterSecureStorage storage = Get.put(const FlutterSecureStorage());
-    var token = await storage.read(key: "jwt");
-    if (token != null) {
-      var jsonData = await RemoteService.authUser(token);
-      if (jsonData == null) {
-        return;
-      }
-      user.value = User.fromJson(jsonData);
+    var response = await RemoteService.authUser();
+    if (response != null) {
+      var userData = json.decode(response)['user'];
+      user.value = User.fromJson(userData);
+      isSignedIn.value = true;
     }
   }
 
@@ -60,5 +57,3 @@ class UserController extends GetxController {
     }
   }
 }
-
-User? userLogin(token) {}

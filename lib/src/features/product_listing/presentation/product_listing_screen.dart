@@ -5,10 +5,16 @@ import 'package:e_commerce/src/features/product_listing/widgets/product_tile.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
-class ProductListing extends StatelessWidget {
+class ProductListing extends StatefulWidget {
   ProductListing({Key? key}) : super(key: key);
 
+  @override
+  State<ProductListing> createState() => _ProductListingState();
+}
+
+class _ProductListingState extends State<ProductListing> {
   final ProductController productController = Get.put(ProductController());
 
   @override
@@ -39,15 +45,19 @@ class ProductListing extends StatelessWidget {
           if (productController.isLoading.value) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            return ListView.builder(
-                itemCount: productController.productList.value.length,
-                itemBuilder: (_, index) => ProductTile(
-                    product: productController.productList.value[index],
-                    moreDetail: () => context.router.push(
-                          ProductDetail(
-                            product: productController.productList.value[index],
-                          ),
-                        )));
+            return LazyLoadScrollView(
+              onEndOfPage: () => {},
+              child: ListView.builder(
+                  itemCount: productController.productList.value.length,
+                  itemBuilder: (_, index) => ProductTile(
+                      product: productController.productList.value[index],
+                      moreDetail: () => context.router.push(
+                            ProductDetail(
+                              product:
+                                  productController.productList.value[index],
+                            ),
+                          ))),
+            );
           }
         }));
   }

@@ -38,6 +38,10 @@ ThemeData appTheme(BuildContext context) {
           color: const Color(0xFF2D0C57),
           fontSize: 30,
         ),
+        headline2: GoogleFonts.aBeeZee(
+          color: const Color(0xFF2D0C57),
+          fontSize: 24,
+        ),
         subtitle1: GoogleFonts.aBeeZee(
           color: const Color(0xFF2D0C57),
           fontWeight: FontWeight.bold,

@@ -79,14 +79,26 @@ class ItemTile extends StatelessWidget {
                     const SizedBox(height: 14),
                     Row(
                       children: [
-                        IconButton(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              padding: const EdgeInsets.all(1)),
+                          child: const Icon(
+                            Icons.remove,
+                            size: 20,
+                          ),
                           onPressed: () => removeFromCart(item),
-                          icon: const Icon(Icons.remove),
                         ),
                         Obx(() => Text(item.quantity.value.toString())),
-                        IconButton(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              padding: const EdgeInsets.all(1)),
+                          child: const Icon(
+                            Icons.add,
+                            size: 20,
+                          ),
                           onPressed: () => addToCart(item),
-                          icon: const Icon(Icons.add),
                         ),
                       ],
                     )

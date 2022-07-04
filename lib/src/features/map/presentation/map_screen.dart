@@ -1,16 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MappScreen extends StatefulWidget {
-  const MappScreen({Key? key}) : super(key: key);
+class MapScreen extends StatefulWidget {
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
-  State<MappScreen> createState() => _MappScreenState();
+  State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MappScreenState extends State<MappScreen> {
+class _MapScreenState extends State<MapScreen> {
+  static const _initialCameraPosition = CameraPosition(
+    target: LatLng(10.763798366911914, 106.68225753068262),
+    zoom: 11.5,
+  );
+
   @override
   Widget build(BuildContext context) {
-    return MappScreen();
+    return Scaffold(
+      body: GoogleMap(
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        initialCameraPosition: _initialCameraPosition,
+      ),
+    );
   }
 }

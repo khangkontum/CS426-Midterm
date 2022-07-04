@@ -2,7 +2,13 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
 
 class User extends GetxController {
-  User({this.username, this.fullname, this.phone, this.email, this.password});
+  User({
+    this.username,
+    this.fullname,
+    this.phone,
+    this.email,
+    this.password,
+  });
 
   String? username;
   String? fullname;
