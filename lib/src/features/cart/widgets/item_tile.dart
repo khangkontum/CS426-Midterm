@@ -91,10 +91,10 @@ class ItemTile extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            cart.removeFromCart(product!.id.toString(), 1);
+                            cart.addToCart(product!.id.toString(), -1);
                           },
                         ),
-                        Obx(() => Text(product.quantity.toString())),
+                        Text(product.quantity.toString()),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
@@ -104,7 +104,7 @@ class ItemTile extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            cart.removeFromCart(product!.id.toString(), 1);
+                            cart.addToCart(product!.id.toString(), 1);
                           },
                         ),
                       ],

@@ -1,3 +1,4 @@
+import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/root/features/login/login_screen.dart';
 import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        if (userController.isSignedIn.value) context.router.push(HomeRoute());
+        if (userController.isSignedIn.value) {
+          context.router.push(HomeRoute());
+        }
         return LoginScreen();
       }),
     );

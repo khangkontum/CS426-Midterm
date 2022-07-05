@@ -13,18 +13,21 @@ class Cart extends GetxController {
   var isLoading = true.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     fetch();
   }
 
   void reload() {
     totalValue.value = 0;
-    totalItem.value = productList.value.length;
+    totalItem.value = 0;
     for (Product product in productList.value) {
+      totalItem += product.quantity;
       totalValue.value +=
           double.parse(product.price.toString()) * product.quantity;
     }
+
+    isLoading.value = false;
   }
 
   void fetch() async {
@@ -36,7 +39,6 @@ class Cart extends GetxController {
           RxList.from(productFromCartJson(response.toString()).toList());
     } finally {
       reload();
-      isLoading.value = false;
     }
   }
 
@@ -44,31 +46,38 @@ class Cart extends GetxController {
     productList.value.clear();
     totalItem.value = 0;
     totalValue.value = 0;
+    RemoteService.deleteCart();
   }
 
   void addToCart(String productId, int quantity) async {
     try {
       isLoading.value = true;
+      productList.value.clear();
+      totalItem.value = 0;
+      totalValue.value = 0;
+
       var response = await RemoteService.addToCart(productId, quantity);
       if (response == null) return;
       productList.value =
           RxList.from(productFromCartJson(response.toString()).toList());
     } finally {
       reload();
-      isLoading.value = false;
     }
   }
 
   void removeFromCart(String productId, int quantity) async {
     try {
       isLoading.value = true;
+      productList.value.clear();
+      totalItem.value = 0;
+      totalValue.value = 0;
+
       var response = await RemoteService.removeFromCart(productId, quantity);
       if (response == null) return;
       productList.value =
           RxList.from(productFromCartJson(response.toString()).toList());
     } finally {
       reload();
-      isLoading.value = false;
     }
   }
 }

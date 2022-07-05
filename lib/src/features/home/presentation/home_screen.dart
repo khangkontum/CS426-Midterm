@@ -64,13 +64,17 @@ class HomePage extends StatelessWidget {
                             ),
                             Align(
                               alignment: Alignment.center,
-                              child: Obx(
-                                () => Text(
-                                  cart.totalItem.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 10, color: Colors.black),
-                                ),
-                              ),
+                              child: Obx(() {
+                                if (cart.isLoading.value) {
+                                  return const CircularProgressIndicator();
+                                } else {
+                                  return Text(
+                                    cart.totalItem.value.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 10, color: Colors.black),
+                                  );
+                                }
+                              }),
                             ),
                           ],
                         ),

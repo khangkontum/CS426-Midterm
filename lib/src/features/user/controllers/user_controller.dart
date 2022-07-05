@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserController extends GetxController {
+  var isLoading = true.obs;
   var isSignedIn = false.obs;
   final user = User().obs;
 
@@ -13,12 +14,14 @@ class UserController extends GetxController {
     super.onInit();
 
     // Check if log in yet
+    isLoading.value = true;
     var response = await RemoteService.authUser();
     if (response != null) {
       var userData = json.decode(response)['user'];
       user.value = User.fromJson(userData);
       isSignedIn.value = true;
     }
+    isLoading.value = false;
   }
 
   static login(username, password) async {

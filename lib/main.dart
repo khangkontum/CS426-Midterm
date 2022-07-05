@@ -1,5 +1,6 @@
 import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/product_listing/controllers/product_controller.dart';
+import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:e_commerce/src/style/style.dart';
 import 'package:flutter/material.dart';
 // import 'package:e_commerce/routes/'
@@ -12,8 +13,8 @@ import 'package:get/instance_manager.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   Get.put(const FlutterSecureStorage());
-  Get.put(Cart());
   Get.put(ProductController());
+
   runApp(MyApp());
 }
 

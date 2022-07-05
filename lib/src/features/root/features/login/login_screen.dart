@@ -79,8 +79,15 @@ class FormLogin extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 43),
-                  TextFormField(
+                  TextField(
                     controller: passwordController,
+                    onSubmitted: (value) async {
+                      await UserController.login(
+                        usernameController.text,
+                        passwordController.text,
+                      );
+                      context.router.push(RootScreen());
+                    },
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(

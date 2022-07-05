@@ -45,7 +45,7 @@ class CartScreen extends StatelessWidget {
                 Expanded(
                   flex: 92,
                   child: ListView.builder(
-                      itemCount: cart.totalItem.value,
+                      itemCount: cart.productList.value.length,
                       itemBuilder: (_, index) =>
                           ItemTile(product: cart.productList.value[index])),
                 ),

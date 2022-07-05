@@ -148,13 +148,20 @@ class RemoteService {
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode(
-          <String, String>{
-            'productId': productId.toString(),
-            'quantity': quantity.toString(),
+          <String, int>{
+            'productId': int.parse(productId),
+            'quantity': quantity,
           },
         ),
       );
+      print(jsonEncode(
+        <String, int>{
+          'productId': int.parse(productId),
+          'quantity': quantity,
+        },
+      ));
       if (response.statusCode == 200) {
+        print(response.body);
         return response.body;
       } else {
         return null;
@@ -169,7 +176,31 @@ class RemoteService {
       var url = dotenv.env["PREFIX"].toString() + "/carts";
       var token = await _getToken();
       if (token == null) return null;
-      var response = await client.post(
+      var response = await client.get(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      print(response.body);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<String?> deleteCart() async {
+    try {
+      var url = dotenv.env["PREFIX"].toString() + "/carts";
+      var token = await _getToken();
+      if (token == null) return null;
+      var response = await client.delete(
         Uri.parse(url),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -200,9 +231,9 @@ class RemoteService {
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode(
-          <String, String>{
-            'productId': productId.toString(),
-            'quantity': quantity.toString(),
+          <String, int>{
+            'productId': int.parse(productId),
+            'quantity': quantity,
           },
         ),
       );
