@@ -1,6 +1,5 @@
 import 'package:e_commerce/src/features/map/models/marker.dart';
 import 'package:e_commerce/src/features/vendors/controllers/vendor_controller.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get.dart';
 
 class MapController extends GetxController {

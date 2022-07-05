@@ -18,7 +18,6 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: parentSize.width,
       height: parentSize.width * .43,

@@ -93,7 +93,7 @@ class _ProductListingState extends State<ProductListing> {
             } else {
               return Padding(
                 padding: const EdgeInsets.only(
-                    top: 10, bottom: 40, left: 20, right: 20),
+                    top: 10, bottom: 0, left: 20, right: 20),
                 child: LazyLoadScrollView(
                   onEndOfPage: () => {},
                   child: ListView.builder(

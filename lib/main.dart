@@ -9,7 +9,7 @@ import 'package:get/instance_manager.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  final FlutterSecureStorage storage = Get.put(FlutterSecureStorage());
+  Get.put(const FlutterSecureStorage());
 
   runApp(MyApp());
 }

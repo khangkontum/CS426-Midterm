@@ -11,7 +11,7 @@ import 'package:e_commerce/src/features/product_listing/widgets/product_tile.dar
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 class VendorDetailScreen extends StatefulWidget {
-  VendorDetailScreen({
+  const VendorDetailScreen({
     Key? key,
     required this.vendorId,
   }) : super(key: key);
@@ -78,40 +78,30 @@ class _VendorDetailScreenState extends State<VendorDetailScreen> {
           } else {
             return SizedBox(
                 width: size.width,
-                child: LazyLoadScrollView(
-                  onEndOfPage: () => {},
-                  child: ListView.builder(
-                      itemCount: _individualVendor.productList.value.length,
-                      itemBuilder: (_, index) => ProductTile(
-                          parentSize: MediaQuery.of(context).size,
-                          product: _individualVendor.productList.value[index],
-                          moreDetail: () => context.router.push(
-                                ProductDetail(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 0, left: 20, right: 20),
+                  child: LazyLoadScrollView(
+                    onEndOfPage: () => {},
+                    child: ListView.builder(
+                        itemCount: _individualVendor.productList.value.length,
+                        itemBuilder: (_, index) => Padding(
+                              padding: const EdgeInsets.only(bottom: 40),
+                              child: ProductTile(
+                                  parentSize: MediaQuery.of(context).size,
                                   product: _individualVendor
                                       .productList.value[index],
-                                ),
-                              ))),
+                                  moreDetail: () => context.router.push(
+                                        ProductDetail(
+                                          product: _individualVendor
+                                              .productList.value[index],
+                                        ),
+                                      )),
+                            )),
+                  ),
                 ));
           }
         }));
-  }
-}
-
-class DetailBody extends StatelessWidget {
-  const DetailBody({Key? key, required this.vendorId}) : super(key: key);
-  final String vendorId;
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: size.width,
-      height: size.height,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [],
-        ),
-      ),
-    );
   }
 }
 

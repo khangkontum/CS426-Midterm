@@ -116,8 +116,8 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/image/khh_logo.png"
+  image_path: "assets/image/logo_big.png"
 
 flutter_native_splash:
   color: "#FF97B7"
-  image: "assets/image/khh_logo.png"
+  image: "assets/image/logo_big.png"

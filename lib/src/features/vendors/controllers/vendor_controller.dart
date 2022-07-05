@@ -32,8 +32,8 @@ class IndividualVendor extends GetxController {
   IndividualVendor({required this.vendorId});
 
   var isLoading = true.obs;
-  var vendorInfo;
-  final vendorId;
+  late Vendor vendorInfo;
+  String vendorId;
   var productList = RxList<Product>().obs;
 
   @override
