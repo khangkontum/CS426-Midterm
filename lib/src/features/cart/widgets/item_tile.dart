@@ -1,13 +1,16 @@
 import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/cart/models/item.dart';
+import 'package:e_commerce/src/features/product_listing/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:get/get.dart';
 
 class ItemTile extends StatelessWidget {
-  const ItemTile({Key? key, required this.item}) : super(key: key);
+  ItemTile({Key? key, required this.product}) : super(key: key);
 
-  final Item item;
+  final Product product;
+
+  final Cart cart = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class ItemTile extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      item.imageLink.toString(),
+                      product.imageLink.toString(),
                       fit: BoxFit.fitWidth,
                       errorBuilder: (context, exception, stackTrace) =>
                           Image.asset(
@@ -46,7 +49,7 @@ class ItemTile extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: AutoSizeText(
-                        item.name.toString(),
+                        product.name.toString(),
                         textAlign: TextAlign.left,
                         style: Theme.of(context).textTheme.subtitle2,
                         minFontSize: 18,
@@ -60,7 +63,7 @@ class ItemTile extends StatelessWidget {
                       child: Row(
                         children: [
                           AutoSizeText(
-                            item.price.toString(),
+                            product.price.toString(),
                             textAlign: TextAlign.left,
                             style: Theme.of(context).textTheme.subtitle2,
                             maxLines: 1,
@@ -87,9 +90,11 @@ class ItemTile extends StatelessWidget {
                             Icons.remove,
                             size: 20,
                           ),
-                          onPressed: () => removeFromCart(item),
+                          onPressed: () {
+                            cart.removeFromCart(product!.id.toString(), 1);
+                          },
                         ),
-                        Obx(() => Text(item.quantity.value.toString())),
+                        Obx(() => Text(product.quantity.toString())),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
@@ -98,7 +103,9 @@ class ItemTile extends StatelessWidget {
                             Icons.add,
                             size: 20,
                           ),
-                          onPressed: () => addToCart(item),
+                          onPressed: () {
+                            cart.removeFromCart(product!.id.toString(), 1);
+                          },
                         ),
                       ],
                     )

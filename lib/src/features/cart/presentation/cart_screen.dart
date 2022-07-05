@@ -45,9 +45,9 @@ class CartScreen extends StatelessWidget {
                 Expanded(
                   flex: 92,
                   child: ListView.builder(
-                      itemCount: cart.itemList.value.length,
+                      itemCount: cart.totalItem.value,
                       itemBuilder: (_, index) =>
-                          ItemTile(item: cart.itemList.value[index])),
+                          ItemTile(product: cart.productList.value[index])),
                 ),
                 Expanded(
                   flex: 8,
@@ -74,7 +74,9 @@ class CartScreen extends StatelessWidget {
                           width: 160,
                           height: 52,
                           child: ElevatedButton(
-                              onPressed: () => confirmCart(),
+                              onPressed: () {
+                                cart.confirmCart();
+                              },
                               child: const AutoSizeText("CONFIRM CART")),
                         ),
                         const SizedBox(width: 34),

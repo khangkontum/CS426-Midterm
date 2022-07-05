@@ -9,6 +9,8 @@ List<Product> productFromJson(String str) => List<Product>.from(
     json.decode(str)['products'].map((x) => Product.fromJson(x)));
 List<Product> productFromVendorJson(String str) => List<Product>.from(
     json.decode(str)['store']['products'].map((x) => Product.fromJson(x)));
+List<Product> productFromCartJson(String str) => List<Product>.from(
+    json.decode(str)['cart']['products'].map((x) => Product.fromJson(x)));
 
 String productToJson(List<Product> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -19,6 +21,7 @@ class Product {
     this.brand,
     this.name,
     this.price,
+    required this.quantity,
     this.priceSign,
     this.currency,
     this.imageLink,
@@ -40,6 +43,7 @@ class Product {
   String? brand;
   String? name;
   String? price;
+  int quantity;
   dynamic priceSign;
   dynamic currency;
   String? imageLink;
@@ -63,6 +67,7 @@ class Product {
         brand: json["brand"],
         name: json["name"],
         price: json["price"],
+        quantity: json["quantity"],
         priceSign: json["price_sign"],
         currency: json["currency"],
         imageLink: json["image"],

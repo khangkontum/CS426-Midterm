@@ -163,6 +163,58 @@ class RemoteService {
       return null;
     }
   }
+
+  static Future<String?> fetchCart() async {
+    try {
+      var url = dotenv.env["PREFIX"].toString() + "/carts";
+      var token = await _getToken();
+      if (token == null) return null;
+      var response = await client.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<String?> removeFromCart(productId, quantity) async {
+    try {
+      var url = dotenv.env["PREFIX"].toString() + "/carts/remove";
+      var token = await _getToken();
+      if (token == null) return null;
+      var response = await client.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(
+          <String, String>{
+            'productId': productId.toString(),
+            'quantity': quantity.toString(),
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 Future<String?> _getToken() async {

@@ -15,7 +15,7 @@ class ProductListing extends StatefulWidget {
 }
 
 class _ProductListingState extends State<ProductListing> {
-  final ProductController productController = Get.put(ProductController());
+  final ProductController productController = Get.find();
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {

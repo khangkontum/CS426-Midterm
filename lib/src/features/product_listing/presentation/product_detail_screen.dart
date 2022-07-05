@@ -4,9 +4,10 @@ import 'package:e_commerce/src/features/cart/models/item.dart';
 import 'package:e_commerce/src/shared/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
+import 'package:get/instance_manager.dart';
 
 class ProductDetail extends StatelessWidget {
-  const ProductDetail({Key? key, this.product}) : super(key: key);
+  ProductDetail({Key? key, this.product}) : super(key: key);
 
   final Product? product;
 
@@ -106,17 +107,20 @@ class DetailBody extends StatelessWidget {
 }
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({
+  AddToCartButton({
     Key? key,
     required this.product,
   }) : super(key: key);
 
   final Product? product;
+  final Cart cart = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => addToCart(itemFromProduct(product)),
+      onPressed: () {
+        cart.addToCart(product!.id.toString(), 1);
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

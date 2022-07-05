@@ -3,9 +3,10 @@ import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/cart/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/src/features/product_listing/models/product.dart';
+import 'package:get/instance_manager.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile(
+  ProductTile(
       {Key? key,
       required this.product,
       required this.moreDetail,
@@ -15,6 +16,8 @@ class ProductTile extends StatelessWidget {
   final Product product;
   final Size parentSize;
   final void Function() moreDetail;
+
+  final Cart cart = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +98,9 @@ class ProductTile extends StatelessWidget {
                 Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () => addToCart(itemFromProduct(product)),
+                      onPressed: () {
+                        cart.addToCart(product.id.toString(), 1);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 0, vertical: 16),
