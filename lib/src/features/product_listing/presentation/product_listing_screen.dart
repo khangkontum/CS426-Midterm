@@ -62,7 +62,11 @@ class _ProductListingState extends State<ProductListing> {
                   child: TextField(
                     controller: searchController,
                     onSubmitted: (String value) {
-                      productController.reload(value);
+                      if (value != '') {
+                        productController.reload(null);
+                      } else {
+                        productController.reload(null);
+                      }
                     },
                     decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,

@@ -69,7 +69,10 @@ class ProductTile extends StatelessWidget {
                 AutoSizeText(
                   product.name.toString(),
                   textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      ?.copyWith(fontWeight: FontWeight.bold),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),

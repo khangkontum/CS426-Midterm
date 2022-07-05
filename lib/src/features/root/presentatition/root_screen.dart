@@ -10,7 +10,7 @@ import 'package:get/instance_manager.dart';
 class RootScreen extends StatelessWidget {
   RootScreen({Key? key}) : super(key: key);
 
-  final UserController userController = Get.put(UserController());
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {

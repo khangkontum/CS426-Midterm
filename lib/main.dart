@@ -1,4 +1,3 @@
-import 'package:e_commerce/src/features/cart/controllers/cart.dart';
 import 'package:e_commerce/src/features/product_listing/controllers/product_controller.dart';
 import 'package:e_commerce/src/features/user/controllers/user_controller.dart';
 import 'package:e_commerce/src/style/style.dart';
@@ -15,6 +14,7 @@ void main() async {
   Get.put(const FlutterSecureStorage());
   Get.put(ProductController());
 
+  Get.put(UserController());
   runApp(MyApp());
 }
 
