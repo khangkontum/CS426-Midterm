@@ -29,6 +29,7 @@ class _VendorDetailScreenState extends State<VendorDetailScreen> {
   void initState() {
     super.initState();
     _individualVendor = Get.put(IndividualVendor(vendorId: widget.vendorId));
+    _individualVendor.reload(widget.vendorId);
   }
 
   @override
@@ -36,49 +37,38 @@ class _VendorDetailScreenState extends State<VendorDetailScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   leading: ElevatedButton(
-        //     style: ElevatedButton.styleFrom(
-        //         shape: const CircleBorder(), padding: const EdgeInsets.all(2)),
-        //     child: const Icon(
-        //       Icons.arrow_back,
-        //       size: 30,
-        //     ),
-        //     onPressed: () => context.router.pop(),
-        //   ),
-        // ),
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
-          child: Container(
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                const SizedBox(width: 20),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Obx(() {
-                        if (_individualVendor.isLoading.value) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else {
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                VendorLogo(
-                                  size: size,
-                                  vendorInf: _individualVendor.vendorInfo,
-                                )
-                              ],
-                            ),
-                          );
-                        }
-                      })
-                    ]),
-              ],
+          preferredSize: Size.fromHeight(size.width * 1 / 4 + 10),
+          child: SafeArea(
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  const SizedBox(width: 20),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Obx(() {
+                          if (_individualVendor.isLoading.value) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else {
+                            return SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  VendorLogo(
+                                    size: size,
+                                    vendorInf: _individualVendor.vendorInfo,
+                                  )
+                                ],
+                              ),
+                            );
+                          }
+                        })
+                      ]),
+                ],
+              ),
             ),
           ),
         ),
@@ -93,6 +83,7 @@ class _VendorDetailScreenState extends State<VendorDetailScreen> {
                   child: ListView.builder(
                       itemCount: _individualVendor.productList.value.length,
                       itemBuilder: (_, index) => ProductTile(
+                          parentSize: MediaQuery.of(context).size,
                           product: _individualVendor.productList.value[index],
                           moreDetail: () => context.router.push(
                                 ProductDetail(

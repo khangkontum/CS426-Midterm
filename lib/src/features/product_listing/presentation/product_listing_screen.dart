@@ -16,21 +16,21 @@ class ProductListing extends StatefulWidget {
 
 class _ProductListingState extends State<ProductListing> {
   final ProductController productController = Get.put(ProductController());
-
+  final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: SafeArea(
           child: Container(
             color: Colors.transparent,
-            child: Row(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(width: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
+                    const SizedBox(width: 20),
                     AutoSizeText(
                       "All Products",
                       style: Theme.of(context).textTheme.headline1,
@@ -41,24 +41,82 @@ class _ProductListingState extends State<ProductListing> {
             ),
           ),
         ),
-        body: Obx(() {
-          if (productController.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return LazyLoadScrollView(
-              onEndOfPage: () => {},
-              child: ListView.builder(
-                  itemCount: productController.productList.value.length,
-                  itemBuilder: (_, index) => ProductTile(
-                      product: productController.productList.value[index],
-                      moreDetail: () => context.router.push(
-                            ProductDetail(
-                              product:
-                                  productController.productList.value[index],
-                            ),
-                          ))),
-            );
-          }
-        }));
+      ),
+      body: Scaffold(
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              floating: true,
+              snap: true,
+              flexibleSpace: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20,
+                  ),
+                  child: TextField(
+                    controller: searchController,
+                    onSubmitted: (String value) {
+                      productController.reload(value);
+                    },
+                    decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        hintText: 'Looking for product?',
+                        labelText: 'Search',
+                        prefixIcon: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {
+                              productController.reload(searchController.text);
+                            }),
+                        suffixIcon: IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              if (searchController.text != '') {
+                                searchController.clear();
+                                productController.reload(null);
+                              }
+                            })),
+                  ),
+                ),
+              ),
+            ),
+          ],
+          body: Obx(() {
+            if (productController.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Padding(
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 40, left: 20, right: 20),
+                child: LazyLoadScrollView(
+                  onEndOfPage: () => {},
+                  child: ListView.builder(
+                      itemCount: productController.productList.value.length,
+                      itemBuilder: (_, index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 40),
+                            child: ProductTile(
+                                product:
+                                    productController.productList.value[index],
+                                parentSize: MediaQuery.of(context).size,
+                                moreDetail: () => context.router.push(
+                                      ProductDetail(
+                                        product: productController
+                                            .productList.value[index],
+                                      ),
+                                    )),
+                          )),
+                ),
+              );
+            }
+          }),
+        ),
+      ),
+    );
   }
 }

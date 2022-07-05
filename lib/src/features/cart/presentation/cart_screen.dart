@@ -14,22 +14,23 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(100),
-          child: Container(
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                const SizedBox(width: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      "Cart",
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                  ],
-                ),
-              ],
+          child: SafeArea(
+            child: Container(
+              color: Colors.transparent,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      AutoSizeText(
+                        "Cart",
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

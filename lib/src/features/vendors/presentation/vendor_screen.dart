@@ -18,37 +18,38 @@ class VendorScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            children: [
-              const SizedBox(width: 20),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText(
-                    "Vendors",
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                ],
-              ),
-              const Spacer(),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    padding: const EdgeInsets.all(10)),
-                onPressed: () {
-                  if (vendorController.isLoading.value == false) {
-                    context.router.push(const MapScreen());
-                  }
-                },
-                child: const Icon(
-                  Icons.map,
-                  size: 30,
+        child: SafeArea(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(width: 20),
+                    AutoSizeText(
+                      "Vendors",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(10)),
+                      onPressed: () {
+                        if (vendorController.isLoading.value == false) {
+                          context.router.push(const MapScreen());
+                        }
+                      },
+                      child: const Icon(
+                        Icons.map,
+                        size: 30,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -123,7 +124,6 @@ class VendorInfo extends StatelessWidget {
                   const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      Get.delete<IndividualVendor>();
                       context.router.push(VendorDetailScreen(
                           vendorId: vendorInf.id.toString()));
                     },

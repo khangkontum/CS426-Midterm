@@ -10,9 +10,15 @@ import 'dart:convert';
 class RemoteService {
   static var client = http.Client();
 
-  static Future<List<Product>?> fetchProducts() async {
+  static Future<List<Product>?> fetchProducts(String? query) async {
     try {
-      var url = dotenv.env["PREFIX"].toString() + '/products';
+      String url;
+      if (query != null) {
+        url = dotenv.env["PREFIX"].toString() + '/products/search?q=${query}';
+      } else {
+        url = dotenv.env["PREFIX"].toString() + '/products';
+      }
+
       var response = await client.get(Uri.parse(url));
       if (response.statusCode == 200) {
         var jsonData = response.body;

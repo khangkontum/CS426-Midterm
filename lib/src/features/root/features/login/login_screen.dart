@@ -9,11 +9,11 @@ import 'package:get/instance_manager.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final usernameController = TextEditingController();
-    final passwordController = TextEditingController();
-
     return SingleChildScrollView(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

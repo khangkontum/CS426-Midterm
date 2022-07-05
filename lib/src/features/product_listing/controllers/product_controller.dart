@@ -10,15 +10,20 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetch();
+    fetch(null);
   }
 
-  void fetch() async {
+  void reload(String? query) {
+    productList.value.clear();
+    fetch(query);
+  }
+
+  void fetch(String? query) async {
     try {
       isLoading.value = true;
-      var products = await RemoteService.fetchProducts();
+      var products = await RemoteService.fetchProducts(query);
       if (products != null) {
-        productList.value = RxList.from(products.reversed.toList());
+        productList.value = RxList.from(products.toList());
       }
     } finally {
       isLoading.value = false;

@@ -21,7 +21,7 @@ class VendorController extends GetxController {
       isLoading.value = true;
       var response = await RemoteService.fetchVendors();
       if (response == null) return;
-      vendorList.value = RxList.from(response!.toList());
+      vendorList.value = RxList.from(response.toList());
     } finally {
       isLoading.value = false;
     }
@@ -39,6 +39,10 @@ class IndividualVendor extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    fetchVendor(vendorId);
+  }
+
+  void reload(String vendorId) {
     fetchVendor(vendorId);
   }
 
