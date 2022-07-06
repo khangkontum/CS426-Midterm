@@ -91,7 +91,7 @@ class ItemTile extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            cart.addToCart(product!.id.toString(), -1);
+                            cart.addToCart(product.id.toString(), -1);
                           },
                         ),
                         Text(product.quantity.toString()),
@@ -104,7 +104,7 @@ class ItemTile extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            cart.addToCart(product!.id.toString(), 1);
+                            cart.addToCart(product.id.toString(), 1);
                           },
                         ),
                       ],
