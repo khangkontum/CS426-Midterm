@@ -63,7 +63,7 @@ class _ProductListingState extends State<ProductListing> {
                     controller: searchController,
                     onSubmitted: (String value) {
                       if (value != '') {
-                        productController.reload(null);
+                        productController.reload(value);
                       } else {
                         productController.reload(null);
                       }
