@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                 selectedColor: const Color(0xFF7203FF),
                 icon: const Icon(
                   Icons.grid_view_outlined,
-                  size: 35,
+                  size: 30,
                 ),
                 title: const Text('Browse'),
               ),
@@ -46,10 +46,9 @@ class HomePage extends StatelessWidget {
                 icon: Stack(children: [
                   const Icon(
                     Icons.shopping_cart_outlined,
-                    size: 35,
+                    size: 30,
                   ),
                   Positioned(
-                      // draw a red marble
                       top: 0.0,
                       right: 0.0,
                       child: SizedBox(
@@ -86,7 +85,7 @@ class HomePage extends StatelessWidget {
                 selectedColor: const Color(0xFF7203FF),
                 icon: const Icon(
                   Icons.store_outlined,
-                  size: 35,
+                  size: 30,
                 ),
                 title: const Text('Vendors'),
               ),
@@ -94,7 +93,7 @@ class HomePage extends StatelessWidget {
                 selectedColor: const Color(0xFF7203FF),
                 icon: const Icon(
                   Icons.person_outline_sharp,
-                  size: 35,
+                  size: 30,
                 ),
                 title: const Text('Profile'),
               ),

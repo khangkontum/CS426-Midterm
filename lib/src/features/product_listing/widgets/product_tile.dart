@@ -109,12 +109,11 @@ class ProductTile extends StatelessWidget {
                             horizontal: 0, vertical: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
+                          children: const [
+                            Icon(
                               Icons.shopping_cart_outlined,
                             ),
-                            SizedBox(width: parentSize.width * 0.03),
-                            const AutoSizeText("ADD TO CART")
+                            AutoSizeText("ADD TO CART")
                           ],
                         ),
                       ),
